@@ -1,0 +1,4 @@
+"version","genes_per_direction","young_high_genes","old_high_genes","young_reference_center","old_reference_center","calibration_denominator","score_weight_formula","ranking_formula_from_step10","score_interpretation"
+"Small",20,20,20,2.54161727793339,-0.684570232896886,3.22618751083027,"min(abs(adjusted_logFC), 3) * r_g","|adjusted_logFC| * |age_rho| * r_g","full-data apparent training score; not leakage-safe validation"
+"Medium",50,50,50,2.50533558598289,-0.738884595086052,3.24422018106894,"min(abs(adjusted_logFC), 3) * r_g","|adjusted_logFC| * |age_rho| * r_g","full-data apparent training score; not leakage-safe validation"
+"Large",100,100,100,2.3904712533256,-0.774391535110579,3.16486278843618,"min(abs(adjusted_logFC), 3) * r_g","|adjusted_logFC| * |age_rho| * r_g","full-data apparent training score; not leakage-safe validation"
