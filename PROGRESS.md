@@ -45,12 +45,13 @@ praises honest negatives. Define in advance what would falsify the approach.
 
 | Date | Step | Status | Notes |
 |---|---|---|---|
-| | conda env `genetech-gf` created | | |
-| | Geneformer cloned and installed | | version / commit hash: |
-| | `torch.cuda.is_available()` | | GPU: |
-| | Model checkpoint chosen | | V1-10M / V2-104M / V2-316M |
-| | Matching token dictionary + gene median file | | must match checkpoint version |
-| | git repo initialised, `.gitignore` in place | | pushing manually, no automation |
+| 2026-07-20 | conda env `genetech-gf` created | done | python 3.10, miniconda, WSL |
+| 2026-07-20 | Geneformer cloned and installed | done | commit `04c2b2e` |
+| 2026-07-20 | `transformers` version resolved | done | 4.57.6. Newer 5.x breaks Geneformer: `ImportError: cannot import name 'SpecialTokensMixin'`. Pinned to <5 in environment.yml |
+| 2026-07-20 | `torch.cuda.is_available()` | True | torch 2.7.1+cu118, RTX 4060 laptop |
+| | Model checkpoint chosen | | plan: start V1-10M (input 2048) to fit laptop VRAM |
+| | Matching token dictionary + gene median file | | must match checkpoint version, do not mix V1 dict with V2 model |
+| 2026-07-20 | git repo initialised, `.gitignore` in place | done | pushing manually, no automation. `Geneformer/` is gitignored |
 | | First push (scaffold only, no results needed) | | repo URL: |
 
 ### .gitignore contents (large files must never be staged)

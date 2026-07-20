@@ -1,4 +1,4 @@
-name: geneformer-msc
+name: genetech-gf
 channels:
   - conda-forge
   - bioconda
@@ -12,8 +12,11 @@ dependencies:
   - pyarrow          # datasets/tokenizer output
   - git-lfs
   - pip:
-      - pybiomart     # mouse -> human ortholog mapping
-      - datasets      # HF datasets (Geneformer tokenizer output format)
-      # torch: install the build that matches your CUDA, e.g.
+      - pybiomart
+      - datasets
+      - transformers<5   # 5.x removes SpecialTokensMixin, breaks Geneformer
+      # torch: install matched to your CUDA, e.g.
       #   pip install torch --index-url https://download.pytorch.org/whl/cu118
-      # Geneformer itself is installed separately from its HF repo (see README step 1)
+      #   verified working: torch 2.7.1+cu118
+      # Geneformer installs separately from its HF repo, see README
+      #   verified working: commit 04c2b2e

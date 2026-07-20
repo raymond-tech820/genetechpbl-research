@@ -38,7 +38,7 @@ explain beats getting the biggest model to load.
 ```bash
 # clone this project, then:
 conda env create -f environment.yml
-conda activate geneformer-msc
+conda activate genetech-gf
 
 # install Geneformer itself (it lives on Hugging Face, not PyPI)
 # needs git-lfs: https://git-lfs.com
