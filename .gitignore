@@ -1,0 +1,11 @@
+data/raw/
+data/prepped/
+data/tokenized/
+Geneformer/
+results/
+*.h5ad
+*.mtx
+*:Zone.Identifier
+__pycache__/
+.ipynb_checkpoints/
+.venv/

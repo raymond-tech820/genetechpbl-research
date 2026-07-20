@@ -1,0 +1,19 @@
+name: geneformer-msc
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.10
+  - pip
+  - scanpy
+  - anndata
+  - pandas
+  - numpy
+  - pyarrow          # datasets/tokenizer output
+  - git-lfs
+  - pip:
+      - pybiomart     # mouse -> human ortholog mapping
+      - datasets      # HF datasets (Geneformer tokenizer output format)
+      # torch: install the build that matches your CUDA, e.g.
+      #   pip install torch --index-url https://download.pytorch.org/whl/cu118
+      # Geneformer itself is installed separately from its HF repo (see README step 1)
