@@ -26,11 +26,9 @@ The GitHub package does not include raw-count matrices. The filtered Limb_Muscle
 - Old cells: 671
 - Matrix/metadata cell order match: TRUE
 
-Geneformer-oriented raw-data files are intentionally not included in this GitHub deliverable. They are stored separately for Google Drive upload in:
+Geneformer-oriented raw-data files are intentionally not included in this GitHub deliverable. They are stored separately for Google Drive upload.
 
-`../geneformer_input_facs_limb_msc_youth_score_v2/`
-
-Google Drive URL: `TODO: paste link here`
+Google Drive URL: `https://drive.google.com/drive/folders/1q2xSg7y7pWaGOFbT6cpl7_wFkNQeL2q7?usp=share_link`
 
 Expected Geneformer raw-data files in the Google Drive bundle:
 
