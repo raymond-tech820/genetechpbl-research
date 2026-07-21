@@ -1,0 +1,9 @@
+{
+  "dataset_id": "limb_facs",
+  "model_id": "limb_facs_gene_signature_cv5_v1",
+  "official_model": "gene_signature",
+  "status": "internally_supported",
+  "selection_rule": "Highest donor out-of-fold ROC-AUC; within 0.02 use lower Brier score; remaining ties prefer the simpler model.",
+  "minimum_gene_overlap": 0.7,
+  "input": "cell-by-gene raw RNA count matrix"
+}

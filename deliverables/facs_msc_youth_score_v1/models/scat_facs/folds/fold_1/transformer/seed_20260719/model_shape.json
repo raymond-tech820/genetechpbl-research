@@ -1,0 +1,11 @@
+{
+  "d_model": 128,
+  "dropout": 0.2,
+  "expression_bin_count": 64,
+  "feedforward": 512,
+  "heads": 8,
+  "layers": 2,
+  "sequence_length": 256,
+  "token_dropout": 0.15,
+  "vocabulary_size": 4098
+}

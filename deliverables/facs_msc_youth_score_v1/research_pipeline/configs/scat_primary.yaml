@@ -1,0 +1,37 @@
+project_root: .
+dataset_id: scat_facs
+role: primary
+modality: facs
+tissue: SCAT
+cell_type: mesenchymal stem cell of adipose
+young_ages: [3m]
+old_ages: [18m, 24m]
+sensitivity_ages: []
+expected_cells: 1570
+expected_young_cells: 737
+expected_old_cells: 833
+expected_young_mice: 7
+expected_old_mice: 8
+minimum_detected_genes: 500
+folds: 5
+seeds: [20260717, 20260718, 20260719]
+feature_count: 4096
+sequence_length: 256
+expression_bins: 64
+model:
+  d_model: 128
+  heads: 8
+  layers: 2
+  feedforward: 512
+  dropout: 0.2
+  token_dropout: 0.15
+  age_loss_weight: 0.25
+training:
+  batch_size: 64
+  learning_rate: 0.0003
+  weight_decay: 0.01
+  max_epochs: 80
+  patience: 12
+  gradient_clip: 1.0
+  num_workers: 0
+
