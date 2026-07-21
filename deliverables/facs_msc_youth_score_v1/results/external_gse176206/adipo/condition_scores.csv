@@ -1,0 +1,5 @@
+external_age_group,external_treatment,youth_score,replicates,cells,ci_low,ci_high
+aged,SOKM,0.43599236,1,8878,,
+aged,control,0.44691756,1,7322,,
+young,SOKM,0.42646512,1,8113,,
+young,control,0.49667057,1,7689,,

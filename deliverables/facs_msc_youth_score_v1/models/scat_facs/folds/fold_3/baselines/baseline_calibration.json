@@ -1,0 +1,14 @@
+{
+  "elastic_net": {
+    "decision_threshold": 0.5,
+    "temperature": 54.597820489517815
+  },
+  "gene_signature": {
+    "decision_threshold": 0.5,
+    "temperature": 0.6622390652493316
+  },
+  "technical_only": {
+    "decision_threshold": 0.5,
+    "temperature": 0.09926213797570936
+  }
+}
