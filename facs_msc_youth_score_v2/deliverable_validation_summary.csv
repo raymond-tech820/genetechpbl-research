@@ -1,0 +1,10 @@
+metric,value,expected,passed
+raw_data_removed_from_github_deliverable,True,True,True
+pseudobulk_count_matrix_removed,True,True,True
+filtered_count_matrix_removed,True,True,True
+full_de_ranking_large_table_removed,True,True,True
+external_geneformer_folder_exists,True,True,True
+external_geneformer_h5ad_exists,True,True,True
+external_geneformer_mtx_exists,True,True,True
+main_readme_has_google_drive_placeholder,True,True,True
+report_image_links_missing,0,0,True

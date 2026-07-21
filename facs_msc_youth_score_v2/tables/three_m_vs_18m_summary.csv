@@ -1,0 +1,2 @@
+"n_mice","auc","all_rho","library_rho","detected_rho","cell_count_rho","young_minus_old_median","zero_signature_folds","full_rank_folds","weak_support_folds","median_jaccard"
+10,0.708333333333333,-0.355334527259351,-0.187878787878788,0.0666666666666667,-0.103030303030303,0.0651966563850751,0,10,6,0.31578947368421

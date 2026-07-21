@@ -1,0 +1,4 @@
+"design","n_samples","n_columns","rank","full_rank","residual_df","condition_number","columns"
+"age_only_~age_group",14,2,2,TRUE,12,2.82093395585053,"(Intercept);age_groupOld"
+"additive_~sex+age_group",14,3,3,TRUE,11,4.04202588627411,"(Intercept);sexmale;age_groupOld"
+"factorial_cell_means_~0+sex_age_group",14,4,4,TRUE,10,1.73205080756888,"age_sex_groupfemale_Young;age_sex_groupmale_Young;age_sex_groupfemale_Old;age_sex_groupmale_Old"
