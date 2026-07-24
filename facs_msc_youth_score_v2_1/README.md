@@ -39,7 +39,7 @@ All remaining `subtissue` values are forelimb/hindlimb formatting variants, stan
 
 Raw single-cell training data are not included in this GitHub folder. Add the download location here before sharing with teammates who need to rerun preprocessing or retraining.
 
-Training data URL: `TODO_ADD_GOOGLE_DRIVE_OR_DATA_PORTAL_URL`
+Training data URL: `https://drive.google.com/drive/folders/1DCOADNzh3T6XFWqdXJHKPtfXDFR_hFGl?usp=share_link`
 
 ## Apply To Pseudobulk Counts In R
 
