@@ -257,7 +257,9 @@ The expected monotonic `3m > 18m > 24m` ordering was false. This argues against 
 Equal-cell sensitivity was rerun from the cleaned `data_facs/raw_data` bundle. Two scenarios were used:
 
 1. all 14 mice downsampled to 14 cells per mouse;
-2. mice with at least 25 cells downsampled to 28 cells per mouse.
+2. mice with at least 28 cells downsampled to 28 cells per mouse.
+
+The second scenario is labeled `min25_mice_28_cells` in the output tables for historical continuity with the script configuration, but the v2.1 cleaned cohort contains no mice with 25-27 cells. The `>=25` script filter therefore selected the same 12 mice as a `>=28` filter, and sampling was performed without replacement.
 
 Nested retraining results:
 

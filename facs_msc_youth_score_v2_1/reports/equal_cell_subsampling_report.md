@@ -12,7 +12,7 @@ This step follows the negative technical-penalty result. It asks whether donor-l
 ## Scenarios
 
 - `all_mice_14_cells`: all 14 mice, 14 cells per mouse.
-- `min25_mice_28_cells`: excludes mice with <25 cells, then uses 28 cells per mouse.
+- `min25_mice_28_cells`: historical scenario label; in the v2.1 cleaned cohort this is equivalent to selecting mice with at least 28 cells, because no mouse has 25-27 cells. These 12 mice were sampled to 28 cells per mouse without replacement.
 
 ## Summary
 
