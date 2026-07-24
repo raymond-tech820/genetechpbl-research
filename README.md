@@ -8,6 +8,7 @@ This repository temporarily contains three MSC Youth Score models developed for 
 |---|---|---|
 | [`droplet_msc_youth_score_v1`](./droplet_msc_youth_score_v1/) | Zihan Zhou | An early model trained on TMS Droplet limb-muscle MSC data. Because the training samples are substantially unbalanced, this model is retained mainly as a reference. |
 | [`facs_msc_youth_score_v1`](./facs_msc_youth_score_v1/) | Kaile Zhu | A finalized Youth Score model developed using FACS MSC data. |
+| [`facs_msc_youth_score_v1_1_cleaned_limb`](./facs_msc_youth_score_v1_1_cleaned_limb/) | Kaile Zhu | Corrected re-training of the FACS Limb Muscle MSC component after explicit exclusion of age-confounded diaphragm cells. |
 | [`facs_msc_youth_score_v2`](./facs_msc_youth_score_v2/) | Zihan Zhou | A finalized Youth Score model trained on TMS FACS limb-muscle MSC pseudobulk data, with nested donor-level validation and cross-assay sensitivity analysis. |
 
 The two finalized models—Kaile Zhu's FACS MSC Youth Score v1 and Zihan Zhou's FACS Limb MSC Youth Score v2—were developed independently. A direct comparison between them has not yet been completed.

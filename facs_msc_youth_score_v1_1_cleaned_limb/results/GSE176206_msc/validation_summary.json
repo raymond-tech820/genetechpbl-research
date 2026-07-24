@@ -1,0 +1,92 @@
+{
+  "aged_sokm_rejuvenation_direction": false,
+  "conditions": [
+    {
+      "cells": 8181,
+      "ci_high": 0.4171089868442767,
+      "ci_low": 0.2957849218722431,
+      "external_age_group": "aged",
+      "external_treatment": "SOKM",
+      "replicates": 3,
+      "youth_score": 0.34395259942098205
+    },
+    {
+      "cells": 2012,
+      "ci_high": 0.5044569086139515,
+      "ci_low": 0.4840216070384607,
+      "external_age_group": "aged",
+      "external_treatment": "control",
+      "replicates": 3,
+      "youth_score": 0.4925130296726428
+    },
+    {
+      "cells": 6811,
+      "ci_high": 0.4012582979479998,
+      "ci_low": 0.3273351552054053,
+      "external_age_group": "young",
+      "external_treatment": "SOKM",
+      "replicates": 3,
+      "youth_score": 0.3657927168580617
+    },
+    {
+      "cells": 1682,
+      "ci_high": 0.539326902802878,
+      "ci_low": 0.5116176137751464,
+      "external_age_group": "young",
+      "external_treatment": "control",
+      "replicates": 3,
+      "youth_score": 0.5284460588420032
+    }
+  ],
+  "contrast_intervals_95": {
+    "aged_sokm_minus_aged_control": [
+      -0.19672810780039973,
+      -0.07708369827071798
+    ],
+    "young_control_minus_aged_control": [
+      0.01910458410250354,
+      0.051945984879713525
+    ]
+  },
+  "contrasts": {
+    "aged_sokm_minus_aged_control": -0.14856043025166077,
+    "young_control_minus_aged_control": 0.03593302916936042
+  },
+  "created_at": "2026-07-24T01:09:12.580491+00:00",
+  "metadata_schema": {
+    "age_column": "age",
+    "replicate_column": "animal",
+    "treatment_column": "treatment"
+  },
+  "minimum_gene_overlap": 0.942138671875,
+  "minimum_replicates_per_condition": 3,
+  "model_output_directory": "outputs\\youth_score\\limb_facs",
+  "official_model": "gene_signature",
+  "preflight": {
+    "fold_gene_overlap": {
+      "0": 0.947265625,
+      "1": 0.943603515625,
+      "2": 0.9453125,
+      "3": 0.9443359375,
+      "4": 0.942138671875
+    },
+    "identity": {
+      "expected_terms": [
+        "msc",
+        "mesenchymal"
+      ],
+      "identity_columns": [],
+      "observed_identity_values": {},
+      "status": "source_file_declared"
+    },
+    "minimum_gene_overlap": 0.942138671875,
+    "reference_dataset_id": "limb_facs",
+    "reference_expression_spearman": 0.5201782746495205,
+    "reference_expression_status": "positive",
+    "sampled_external_cells": 4096,
+    "shared_reference_genes": 4280
+  },
+  "replication_status": "replicated",
+  "source_h5ad": "data\\external\\GSE176206\\GSE176206_msc_sokm.h5ad",
+  "young_control_sanity_pass": true
+}

@@ -1,0 +1,53 @@
+{
+  "age_direction_pass": true,
+  "age_summary": [
+    {
+      "age": "18m",
+      "age_months": 18.0,
+      "cells": 2957,
+      "donors": 4,
+      "youth_score": 0.21796047330558507
+    },
+    {
+      "age": "1m",
+      "age_months": 1.0,
+      "cells": 2356,
+      "donors": 2,
+      "youth_score": 0.4880964864049052
+    },
+    {
+      "age": "21m",
+      "age_months": 21.0,
+      "cells": 2007,
+      "donors": 2,
+      "youth_score": 0.15771770204361135
+    },
+    {
+      "age": "24m",
+      "age_months": 24.0,
+      "cells": 3217,
+      "donors": 4,
+      "youth_score": 0.10806800016846392
+    },
+    {
+      "age": "30m",
+      "age_months": 30.0,
+      "cells": 1032,
+      "donors": 2,
+      "youth_score": 0.14449746042164516
+    },
+    {
+      "age": "3m",
+      "age_months": 3.0,
+      "cells": 1468,
+      "donors": 2,
+      "youth_score": 0.2837217511681957
+    }
+  ],
+  "created_at": "2026-07-24T01:08:21.477374+00:00",
+  "donor_age_spearman": -0.8384586528160265,
+  "interpretation": "Sensitivity analysis only; age, sex, donor count, and modality are confounded.",
+  "minimum_gene_overlap": 1.0,
+  "official_model": "gene_signature",
+  "source_model": "outputs\\youth_score\\limb_facs"
+}

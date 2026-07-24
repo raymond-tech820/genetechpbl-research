@@ -1,0 +1,763 @@
+{
+  "created_at": "2026-07-24T01:11:21.793700+00:00",
+  "droplet_sensitivity": {
+    "age_direction_pass": true,
+    "age_summary": [
+      {
+        "age": "18m",
+        "age_months": 18.0,
+        "cells": 2957,
+        "donors": 4,
+        "youth_score": 0.21796047330558507
+      },
+      {
+        "age": "1m",
+        "age_months": 1.0,
+        "cells": 2356,
+        "donors": 2,
+        "youth_score": 0.4880964864049052
+      },
+      {
+        "age": "21m",
+        "age_months": 21.0,
+        "cells": 2007,
+        "donors": 2,
+        "youth_score": 0.15771770204361135
+      },
+      {
+        "age": "24m",
+        "age_months": 24.0,
+        "cells": 3217,
+        "donors": 4,
+        "youth_score": 0.10806800016846392
+      },
+      {
+        "age": "30m",
+        "age_months": 30.0,
+        "cells": 1032,
+        "donors": 2,
+        "youth_score": 0.14449746042164516
+      },
+      {
+        "age": "3m",
+        "age_months": 3.0,
+        "cells": 1468,
+        "donors": 2,
+        "youth_score": 0.2837217511681957
+      }
+    ],
+    "created_at": "2026-07-24T01:08:21.477374+00:00",
+    "donor_age_spearman": -0.8384586528160265,
+    "interpretation": "Sensitivity analysis only; age, sex, donor count, and modality are confounded.",
+    "minimum_gene_overlap": 1.0,
+    "official_model": "gene_signature",
+    "source_model": "outputs\\youth_score\\limb_facs"
+  },
+  "external_validation": {
+    "adipo_sokm": {
+      "aged_sokm_rejuvenation_direction": false,
+      "conditions": [
+        {
+          "cells": 8878,
+          "ci_high": null,
+          "ci_low": null,
+          "external_age_group": "aged",
+          "external_treatment": "SOKM",
+          "replicates": 1,
+          "youth_score": 0.43599236011505127
+        },
+        {
+          "cells": 7322,
+          "ci_high": null,
+          "ci_low": null,
+          "external_age_group": "aged",
+          "external_treatment": "control",
+          "replicates": 1,
+          "youth_score": 0.4469175636768341
+        },
+        {
+          "cells": 8113,
+          "ci_high": null,
+          "ci_low": null,
+          "external_age_group": "young",
+          "external_treatment": "SOKM",
+          "replicates": 1,
+          "youth_score": 0.42646512389183044
+        },
+        {
+          "cells": 7689,
+          "ci_high": null,
+          "ci_low": null,
+          "external_age_group": "young",
+          "external_treatment": "control",
+          "replicates": 1,
+          "youth_score": 0.49667057394981384
+        }
+      ],
+      "contrast_intervals_95": {
+        "aged_sokm_minus_aged_control": null,
+        "young_control_minus_aged_control": null
+      },
+      "contrasts": {
+        "aged_sokm_minus_aged_control": -0.010925203561782837,
+        "young_control_minus_aged_control": 0.049753010272979736
+      },
+      "created_at": "2026-07-17T09:41:32.556669+00:00",
+      "metadata_schema": {
+        "age_column": "age",
+        "replicate_column": "sample",
+        "treatment_column": "sample_treatment"
+      },
+      "minimum_gene_overlap": 0.943115234375,
+      "minimum_replicates_per_condition": 1,
+      "model_output_directory": "D:\\Genetech Project\\outputs\\youth_score\\scat_facs",
+      "official_model": "elastic_net",
+      "preflight": {
+        "fold_gene_overlap": {
+          "0": 0.94921875,
+          "1": 0.9462890625,
+          "2": 0.94384765625,
+          "3": 0.946533203125,
+          "4": 0.943115234375
+        },
+        "identity": {
+          "expected_terms": [
+            "adipo",
+            "adipogenic"
+          ],
+          "identity_columns": [
+            "sample_cell_types"
+          ],
+          "observed_identity_values": {
+            "sample_cell_types": [
+              "Adipose"
+            ]
+          },
+          "status": "metadata_match"
+        },
+        "minimum_gene_overlap": 0.943115234375,
+        "reference_dataset_id": "scat_facs",
+        "reference_expression_spearman": 0.5710187462417944,
+        "reference_expression_status": "positive",
+        "sampled_external_cells": 4096,
+        "shared_reference_genes": 4270
+      },
+      "replication_status": "replication_limited",
+      "source_h5ad": "D:\\Genetech Project\\data\\external\\GSE176206\\GSE176206_adipo_sokm.h5ad",
+      "young_control_sanity_pass": true
+    },
+    "msc_sokm": {
+      "aged_sokm_rejuvenation_direction": false,
+      "conditions": [
+        {
+          "cells": 8181,
+          "ci_high": 0.4171089868442767,
+          "ci_low": 0.2957849218722431,
+          "external_age_group": "aged",
+          "external_treatment": "SOKM",
+          "replicates": 3,
+          "youth_score": 0.34395259942098205
+        },
+        {
+          "cells": 2012,
+          "ci_high": 0.5044569086139515,
+          "ci_low": 0.4840216070384607,
+          "external_age_group": "aged",
+          "external_treatment": "control",
+          "replicates": 3,
+          "youth_score": 0.4925130296726428
+        },
+        {
+          "cells": 6811,
+          "ci_high": 0.4012582979479998,
+          "ci_low": 0.3273351552054053,
+          "external_age_group": "young",
+          "external_treatment": "SOKM",
+          "replicates": 3,
+          "youth_score": 0.3657927168580617
+        },
+        {
+          "cells": 1682,
+          "ci_high": 0.539326902802878,
+          "ci_low": 0.5116176137751464,
+          "external_age_group": "young",
+          "external_treatment": "control",
+          "replicates": 3,
+          "youth_score": 0.5284460588420032
+        }
+      ],
+      "contrast_intervals_95": {
+        "aged_sokm_minus_aged_control": [
+          -0.19672810780039973,
+          -0.07708369827071798
+        ],
+        "young_control_minus_aged_control": [
+          0.01910458410250354,
+          0.051945984879713525
+        ]
+      },
+      "contrasts": {
+        "aged_sokm_minus_aged_control": -0.14856043025166077,
+        "young_control_minus_aged_control": 0.03593302916936042
+      },
+      "created_at": "2026-07-24T01:09:12.580491+00:00",
+      "metadata_schema": {
+        "age_column": "age",
+        "replicate_column": "animal",
+        "treatment_column": "treatment"
+      },
+      "minimum_gene_overlap": 0.942138671875,
+      "minimum_replicates_per_condition": 3,
+      "model_output_directory": "outputs\\youth_score\\limb_facs",
+      "official_model": "gene_signature",
+      "preflight": {
+        "fold_gene_overlap": {
+          "0": 0.947265625,
+          "1": 0.943603515625,
+          "2": 0.9453125,
+          "3": 0.9443359375,
+          "4": 0.942138671875
+        },
+        "identity": {
+          "expected_terms": [
+            "msc",
+            "mesenchymal"
+          ],
+          "identity_columns": [],
+          "observed_identity_values": {},
+          "status": "source_file_declared"
+        },
+        "minimum_gene_overlap": 0.942138671875,
+        "reference_dataset_id": "limb_facs",
+        "reference_expression_spearman": 0.5201782746495205,
+        "reference_expression_status": "positive",
+        "sampled_external_cells": 4096,
+        "shared_reference_genes": 4280
+      },
+      "replication_status": "replicated",
+      "source_h5ad": "data\\external\\GSE176206\\GSE176206_msc_sokm.h5ad",
+      "young_control_sanity_pass": true
+    }
+  },
+  "internal_validation": {
+    "limb_facs": {
+      "all_genes_sensitivity": {
+        "metrics": [
+          {
+            "age_spearman": -0.8579172326174467,
+            "balanced_accuracy": 0.9375,
+            "brier": 0.0532378328060872,
+            "donors": 14,
+            "f1": 0.9230769230769232,
+            "model": "gene_signature",
+            "pr_auc": 0.976190476190476,
+            "roc_auc": 0.9791666666666666,
+            "roc_auc_ci_high": 1.0,
+            "roc_auc_ci_low": 0.8958333333333334
+          },
+          {
+            "age_spearman": -0.8391000470080363,
+            "balanced_accuracy": 0.8541666666666667,
+            "brier": 0.0886210797993713,
+            "donors": 14,
+            "f1": 0.8333333333333334,
+            "model": "elastic_net",
+            "pr_auc": 0.9484126984126984,
+            "roc_auc": 0.9583333333333331,
+            "roc_auc_ci_high": 1.0,
+            "roc_auc_ci_low": 0.8333333333333333
+          },
+          {
+            "age_spearman": -0.5344402432698848,
+            "balanced_accuracy": 0.7916666666666667,
+            "brier": 0.1774810310020379,
+            "donors": 14,
+            "f1": 0.7692307692307693,
+            "model": "gene_transformer",
+            "pr_auc": 0.8134920634920635,
+            "roc_auc": 0.7916666666666667,
+            "roc_auc_ci_high": 1.0,
+            "roc_auc_ci_low": 0.5
+          },
+          {
+            "age_spearman": -0.412550363225876,
+            "balanced_accuracy": 0.7291666666666667,
+            "brier": 0.2721519857204115,
+            "donors": 14,
+            "f1": 0.7142857142857143,
+            "model": "technical_only",
+            "pr_auc": 0.5007936507936507,
+            "roc_auc": 0.5833333333333333,
+            "roc_auc_ci_high": 0.8958333333333334,
+            "roc_auc_ci_low": 0.2708333333333333
+          }
+        ],
+        "selection": {
+          "config": {
+            "dataset": {
+              "cell_type": "mesenchymal stem cell",
+              "dataset_id": "limb_facs",
+              "excluded_subtissues": [
+                "Muscle Diaphragm"
+              ],
+              "expected_cells": 815,
+              "expected_old_cells": 551,
+              "expected_old_mice": 8,
+              "expected_young_cells": 264,
+              "expected_young_mice": 6,
+              "expression_bins": 64,
+              "feature_count": 4096,
+              "folds": 5,
+              "minimum_detected_genes": 500,
+              "modality": "facs",
+              "model": {
+                "age_loss_weight": 0.25,
+                "d_model": 128,
+                "dropout": 0.2,
+                "feedforward": 512,
+                "heads": 8,
+                "layers": 2,
+                "token_dropout": 0.15
+              },
+              "old_ages": [
+                "18m",
+                "24m"
+              ],
+              "path": "D:\\Genetech Project\\configs\\limb_secondary.yaml",
+              "project_root": "D:\\Genetech Project",
+              "role": "secondary",
+              "seeds": [
+                20260717,
+                20260718,
+                20260719
+              ],
+              "sensitivity_ages": [],
+              "sequence_length": 256,
+              "tissue": "Limb_Muscle",
+              "training": {
+                "batch_size": 64,
+                "gradient_clip": 1.0,
+                "learning_rate": 0.0003,
+                "max_epochs": 80,
+                "num_workers": 0,
+                "patience": 12,
+                "weight_decay": 0.01
+              },
+              "young_ages": [
+                "3m"
+              ]
+            }
+          },
+          "created_at": "2026-07-24T01:11:10.202894+00:00",
+          "dataset_id": "limb_facs",
+          "feature_mode": "all",
+          "official_model": "gene_signature",
+          "runtime": {
+            "cuda_available": true,
+            "cuda_version": "13.0",
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "platform": "win32",
+            "python": "3.12.13 (main, Mar  3 2026, 15:01:35) [MSC v.1944 64 bit (AMD64)]",
+            "torch": "2.13.0+cu130"
+          },
+          "selection_rule": "Highest donor OOF ROC-AUC; within 0.02 use lower Brier; remaining ties prefer simpler models.",
+          "sensitivity": {
+            "age_3m_vs_18m_reversed": false,
+            "male_only_reversed": false,
+            "official_auc": 0.9791666666666666,
+            "technical_auc": 0.5833333333333333
+          },
+          "status": "internally_supported"
+        }
+      },
+      "metrics": [
+        {
+          "age_spearman": -0.8766695218549865,
+          "balanced_accuracy": 0.9375,
+          "brier": 0.0546860730468893,
+          "donors": 14,
+          "f1": 0.9230769230769232,
+          "model": "gene_signature",
+          "pr_auc": 0.976190476190476,
+          "roc_auc": 0.9791666666666666,
+          "roc_auc_ci_high": 1.0,
+          "roc_auc_ci_low": 0.8958333333333334
+        },
+        {
+          "age_spearman": -0.8973962827537346,
+          "balanced_accuracy": 0.8541666666666667,
+          "brier": 0.0721812990075942,
+          "donors": 14,
+          "f1": 0.8333333333333334,
+          "model": "elastic_net",
+          "pr_auc": 0.976190476190476,
+          "roc_auc": 0.9791666666666666,
+          "roc_auc_ci_high": 1.0,
+          "roc_auc_ci_low": 0.8958333333333334
+        },
+        {
+          "age_spearman": -0.5860090386731193,
+          "balanced_accuracy": 0.9166666666666669,
+          "brier": 0.1845071030378491,
+          "donors": 14,
+          "f1": 0.9090909090909092,
+          "model": "gene_transformer",
+          "pr_auc": 0.9102564102564102,
+          "roc_auc": 0.8541666666666667,
+          "roc_auc_ci_high": 1.0,
+          "roc_auc_ci_low": 0.5625
+        },
+        {
+          "age_spearman": -0.412550363225876,
+          "balanced_accuracy": 0.7291666666666667,
+          "brier": 0.2721519857204115,
+          "donors": 14,
+          "f1": 0.7142857142857143,
+          "model": "technical_only",
+          "pr_auc": 0.5007936507936507,
+          "roc_auc": 0.5833333333333333,
+          "roc_auc_ci_high": 0.8958333333333334,
+          "roc_auc_ci_low": 0.2708333333333333
+        }
+      ],
+      "selection": {
+        "config": {
+          "dataset": {
+            "cell_type": "mesenchymal stem cell",
+            "dataset_id": "limb_facs",
+            "excluded_subtissues": [
+              "Muscle Diaphragm"
+            ],
+            "expected_cells": 815,
+            "expected_old_cells": 551,
+            "expected_old_mice": 8,
+            "expected_young_cells": 264,
+            "expected_young_mice": 6,
+            "expression_bins": 64,
+            "feature_count": 4096,
+            "folds": 5,
+            "minimum_detected_genes": 500,
+            "modality": "facs",
+            "model": {
+              "age_loss_weight": 0.25,
+              "d_model": 128,
+              "dropout": 0.2,
+              "feedforward": 512,
+              "heads": 8,
+              "layers": 2,
+              "token_dropout": 0.15
+            },
+            "old_ages": [
+              "18m",
+              "24m"
+            ],
+            "path": "D:\\Genetech Project\\configs\\limb_secondary.yaml",
+            "project_root": "D:\\Genetech Project",
+            "role": "secondary",
+            "seeds": [
+              20260717,
+              20260718,
+              20260719
+            ],
+            "sensitivity_ages": [],
+            "sequence_length": 256,
+            "tissue": "Limb_Muscle",
+            "training": {
+              "batch_size": 64,
+              "gradient_clip": 1.0,
+              "learning_rate": 0.0003,
+              "max_epochs": 80,
+              "num_workers": 0,
+              "patience": 12,
+              "weight_decay": 0.01
+            },
+            "young_ages": [
+              "3m"
+            ]
+          }
+        },
+        "created_at": "2026-07-24T01:07:45.855130+00:00",
+        "dataset_id": "limb_facs",
+        "feature_mode": "primary",
+        "official_model": "gene_signature",
+        "runtime": {
+          "cuda_available": true,
+          "cuda_version": "13.0",
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "platform": "win32",
+          "python": "3.12.13 (main, Mar  3 2026, 15:01:35) [MSC v.1944 64 bit (AMD64)]",
+          "torch": "2.13.0+cu130"
+        },
+        "selection_rule": "Highest donor OOF ROC-AUC; within 0.02 use lower Brier; remaining ties prefer simpler models.",
+        "sensitivity": {
+          "age_3m_vs_18m_reversed": false,
+          "male_only_reversed": false,
+          "official_auc": 0.9791666666666666,
+          "technical_auc": 0.5833333333333333
+        },
+        "status": "internally_supported"
+      }
+    },
+    "scat_facs": {
+      "all_genes_sensitivity": {
+        "metrics": [
+          {
+            "age_spearman": -0.8509166701016655,
+            "balanced_accuracy": 0.8660714285714286,
+            "brier": 0.0802607670097055,
+            "donors": 15,
+            "f1": 0.8571428571428571,
+            "model": "elastic_net",
+            "pr_auc": 0.9571428571428572,
+            "roc_auc": 0.9464285714285714,
+            "roc_auc_ci_high": 1.0,
+            "roc_auc_ci_low": 0.8214285714285714
+          },
+          {
+            "age_spearman": -0.6300240807976214,
+            "balanced_accuracy": 0.8035714285714286,
+            "brier": 0.1965864552567878,
+            "donors": 15,
+            "f1": 0.8,
+            "model": "gene_signature",
+            "pr_auc": 0.7932496075353217,
+            "roc_auc": 0.7857142857142857,
+            "roc_auc_ci_high": 1.0,
+            "roc_auc_ci_low": 0.5178571428571428
+          },
+          {
+            "age_spearman": -0.478280475971365,
+            "balanced_accuracy": 0.4732142857142857,
+            "brier": 0.2019003055209563,
+            "donors": 15,
+            "f1": 0.5,
+            "model": "gene_transformer",
+            "pr_auc": 0.7384877027734171,
+            "roc_auc": 0.6964285714285714,
+            "roc_auc_ci_high": 0.9464285714285714,
+            "roc_auc_ci_low": 0.3928571428571428
+          },
+          {
+            "age_spearman": -0.4168147119911093,
+            "balanced_accuracy": 0.6696428571428572,
+            "brier": 0.2399132572147157,
+            "donors": 15,
+            "f1": 0.6666666666666666,
+            "model": "technical_only",
+            "pr_auc": 0.7384877027734171,
+            "roc_auc": 0.6964285714285714,
+            "roc_auc_ci_high": 0.9464285714285714,
+            "roc_auc_ci_low": 0.3928571428571428
+          }
+        ],
+        "selection": {
+          "config": {
+            "dataset": {
+              "cell_type": "mesenchymal stem cell of adipose",
+              "dataset_id": "scat_facs",
+              "expected_cells": 1570,
+              "expected_old_cells": 833,
+              "expected_old_mice": 8,
+              "expected_young_cells": 737,
+              "expected_young_mice": 7,
+              "expression_bins": 64,
+              "feature_count": 4096,
+              "folds": 5,
+              "minimum_detected_genes": 500,
+              "modality": "facs",
+              "model": {
+                "age_loss_weight": 0.25,
+                "d_model": 128,
+                "dropout": 0.2,
+                "feedforward": 512,
+                "heads": 8,
+                "layers": 2,
+                "token_dropout": 0.15
+              },
+              "old_ages": [
+                "18m",
+                "24m"
+              ],
+              "path": "D:\\Genetech Project\\configs\\scat_primary.yaml",
+              "project_root": "D:\\Genetech Project",
+              "role": "primary",
+              "seeds": [
+                20260717,
+                20260718,
+                20260719
+              ],
+              "sensitivity_ages": [],
+              "sequence_length": 256,
+              "tissue": "SCAT",
+              "training": {
+                "batch_size": 64,
+                "gradient_clip": 1.0,
+                "learning_rate": 0.0003,
+                "max_epochs": 80,
+                "num_workers": 0,
+                "patience": 12,
+                "weight_decay": 0.01
+              },
+              "young_ages": [
+                "3m"
+              ]
+            }
+          },
+          "created_at": "2026-07-17T09:49:10.799104+00:00",
+          "dataset_id": "scat_facs",
+          "feature_mode": "all",
+          "official_model": "elastic_net",
+          "runtime": {
+            "cuda_available": true,
+            "cuda_version": "13.0",
+            "gpu": "NVIDIA GeForce RTX 4090",
+            "platform": "win32",
+            "python": "3.12.13 (main, Mar  3 2026, 15:01:35) [MSC v.1944 64 bit (AMD64)]",
+            "torch": "2.13.0+cu130"
+          },
+          "selection_rule": "Highest donor OOF ROC-AUC; within 0.02 use lower Brier; remaining ties prefer simpler models.",
+          "sensitivity": {
+            "age_3m_vs_18m_reversed": false,
+            "male_only_reversed": false,
+            "official_auc": 0.9464285714285714,
+            "technical_auc": 0.6964285714285714
+          },
+          "status": "internally_supported"
+        }
+      },
+      "metrics": [
+        {
+          "age_spearman": -0.8355502291066016,
+          "balanced_accuracy": 0.8035714285714286,
+          "brier": 0.0882693276855955,
+          "donors": 15,
+          "f1": 0.8,
+          "model": "elastic_net",
+          "pr_auc": 0.9571428571428572,
+          "roc_auc": 0.9464285714285714,
+          "roc_auc_ci_high": 1.0,
+          "roc_auc_ci_low": 0.8214285714285714
+        },
+        {
+          "age_spearman": -0.6684401832852813,
+          "balanced_accuracy": 0.6160714285714286,
+          "brier": 0.193663131199863,
+          "donors": 15,
+          "f1": 0.6666666666666666,
+          "model": "gene_transformer",
+          "pr_auc": 0.8676870748299319,
+          "roc_auc": 0.8571428571428571,
+          "roc_auc_ci_high": 1.0,
+          "roc_auc_ci_low": 0.625
+        },
+        {
+          "age_spearman": -0.6453905217926854,
+          "balanced_accuracy": 0.8035714285714286,
+          "brier": 0.1994904168487801,
+          "donors": 15,
+          "f1": 0.8,
+          "model": "gene_signature",
+          "pr_auc": 0.7932496075353217,
+          "roc_auc": 0.7857142857142857,
+          "roc_auc_ci_high": 1.0,
+          "roc_auc_ci_low": 0.5178571428571428
+        },
+        {
+          "age_spearman": -0.4168147119911093,
+          "balanced_accuracy": 0.6696428571428572,
+          "brier": 0.2399132572147157,
+          "donors": 15,
+          "f1": 0.6666666666666666,
+          "model": "technical_only",
+          "pr_auc": 0.7384877027734171,
+          "roc_auc": 0.6964285714285714,
+          "roc_auc_ci_high": 0.9464285714285714,
+          "roc_auc_ci_low": 0.3928571428571428
+        }
+      ],
+      "selection": {
+        "config": {
+          "dataset": {
+            "cell_type": "mesenchymal stem cell of adipose",
+            "dataset_id": "scat_facs",
+            "expected_cells": 1570,
+            "expected_old_cells": 833,
+            "expected_old_mice": 8,
+            "expected_young_cells": 737,
+            "expected_young_mice": 7,
+            "expression_bins": 64,
+            "feature_count": 4096,
+            "folds": 5,
+            "minimum_detected_genes": 500,
+            "modality": "facs",
+            "model": {
+              "age_loss_weight": 0.25,
+              "d_model": 128,
+              "dropout": 0.2,
+              "feedforward": 512,
+              "heads": 8,
+              "layers": 2,
+              "token_dropout": 0.15
+            },
+            "old_ages": [
+              "18m",
+              "24m"
+            ],
+            "path": "D:\\Genetech Project\\configs\\scat_primary.yaml",
+            "project_root": "D:\\Genetech Project",
+            "role": "primary",
+            "seeds": [
+              20260717,
+              20260718,
+              20260719
+            ],
+            "sensitivity_ages": [],
+            "sequence_length": 256,
+            "tissue": "SCAT",
+            "training": {
+              "batch_size": 64,
+              "gradient_clip": 1.0,
+              "learning_rate": 0.0003,
+              "max_epochs": 80,
+              "num_workers": 0,
+              "patience": 12,
+              "weight_decay": 0.01
+            },
+            "young_ages": [
+              "3m"
+            ]
+          }
+        },
+        "created_at": "2026-07-17T09:46:38.160742+00:00",
+        "dataset_id": "scat_facs",
+        "feature_mode": "primary",
+        "official_model": "elastic_net",
+        "runtime": {
+          "cuda_available": true,
+          "cuda_version": "13.0",
+          "gpu": "NVIDIA GeForce RTX 4090",
+          "platform": "win32",
+          "python": "3.12.13 (main, Mar  3 2026, 15:01:35) [MSC v.1944 64 bit (AMD64)]",
+          "torch": "2.13.0+cu130"
+        },
+        "selection_rule": "Highest donor OOF ROC-AUC; within 0.02 use lower Brier; remaining ties prefer simpler models.",
+        "sensitivity": {
+          "age_3m_vs_18m_reversed": false,
+          "male_only_reversed": false,
+          "official_auc": 0.9464285714285714,
+          "technical_auc": 0.6964285714285714
+        },
+        "status": "internally_supported"
+      }
+    }
+  },
+  "runtime": {
+    "cuda_available": true,
+    "cuda_version": "13.0",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "platform": "win32",
+    "python": "3.12.13 (main, Mar  3 2026, 15:01:35) [MSC v.1944 64 bit (AMD64)]",
+    "torch": "2.13.0+cu130"
+  },
+  "scientific_scope": "Research-only transcriptomic similarity score; not a safety score, causal rejuvenation measurement, clinical age, or treatment recommendation."
+}
