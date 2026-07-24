@@ -1,0 +1,21 @@
+project_root: .
+dataset_id: limb_droplet_sensitivity
+role: sensitivity
+modality: droplet
+tissue: Limb_Muscle
+cell_type: mesenchymal stem cell
+young_ages: [3m]
+old_ages: [18m, 21m, 24m]
+sensitivity_ages: [1m, 3m, 18m, 21m, 24m, 30m]
+expected_cells: 13037
+expected_young_cells: 1468
+expected_old_cells: 8181
+expected_young_mice: 2
+expected_old_mice: 10
+minimum_detected_genes: 500
+folds: 5
+seeds: [20260717]
+feature_count: 4096
+sequence_length: 256
+expression_bins: 64
+

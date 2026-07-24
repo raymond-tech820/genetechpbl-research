@@ -1,0 +1,7 @@
+{
+  "age_column": "age",
+  "gene_name_source": "var_names",
+  "matrix_source": "layers/counts",
+  "replicate_column": "animal",
+  "treatment_column": "treatment"
+}

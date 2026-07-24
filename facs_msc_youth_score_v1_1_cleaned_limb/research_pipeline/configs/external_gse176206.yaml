@@ -1,0 +1,13 @@
+project_root: .
+accession: GSE176206
+minimum_gene_overlap: 0.70
+chunk_size: 2048
+files:
+  adipo_sokm:
+    model_dataset_id: scat_facs
+    url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE176nnn/GSE176206/suppl/GSE176206_adipo_sokm.h5ad.gz
+    filename: GSE176206_adipo_sokm.h5ad.gz
+  msc_sokm:
+    model_dataset_id: limb_facs
+    url: https://ftp.ncbi.nlm.nih.gov/geo/series/GSE176nnn/GSE176206/suppl/GSE176206_msc_sokm.h5ad.gz
+    filename: GSE176206_msc_sokm.h5ad.gz
