@@ -1,0 +1,13 @@
+"metric","value"
+"filtered_genes_tested",12824
+"age_only_fdr_lt_0_1",157
+"common_fdr_lt_0_1",25
+"female_fdr_lt_0_1",0
+"male_fdr_lt_0_1",778
+"interaction_fdr_lt_0_1",0
+"sex_direction_concordant_genes",6809
+"age_only_common_concordant_genes",11692
+"primary_reliability_pass_full_data",6760
+"young_high_ranked_candidates",4017
+"old_high_ranked_candidates",2743
+"sex_linked_genes_present",7
