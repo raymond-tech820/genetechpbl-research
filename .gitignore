@@ -1,6 +1,8 @@
 data/raw/
 data/prepped/
+data/prepped_diag/
 data/tokenized/
+data/tokenized_diag/
 Geneformer/
 results/
 *.h5ad
@@ -9,3 +11,4 @@ results/
 __pycache__/
 .ipynb_checkpoints/
 .venv/
+.pybiomart.sqlite
