@@ -2,7 +2,7 @@
 
 # Genentech PBL Youth Score Models
 
-This repository temporarily contains MSC Youth Score model deliverables developed for the Genentech AI for Regenerative Biology PBL project.
+This repository temporarily contains MSC Youth Score model deliverables and model-comparison outputs developed for the Genentech AI for Regenerative Biology PBL project.
 
 | Model | Contributor | Description |
 |---|---|---|
@@ -12,6 +12,30 @@ This repository temporarily contains MSC Youth Score model deliverables develope
 | [`facs_msc_youth_score_v2`](./facs_msc_youth_score_v2/) | Zihan Zhou | Deprecated FACS v2 model, retained for provenance only. Use `facs_msc_youth_score_v2_1` for the current Zihan model. |
 | [`facs_msc_youth_score_v2_1`](./facs_msc_youth_score_v2_1/) | Zihan Zhou | Current Zihan FACS model for comparison and further refinement, retrained on diaphragm-excluded TMS FACS limb-muscle MSC pseudobulk data. |
 
-The current active comparison should focus on Kaile Zhu's `facs_msc_youth_score_v1_1_cleaned_limb` and Zihan Zhou's `facs_msc_youth_score_v2_1`. The older FACS v1/v2 folders are preserved only to keep prior analyses reproducible.
+## Active Model Comparison
 
-See each model directory for its detailed documentation, scoring files, validation results, and limitations.
+The current active comparison is between Kaile Zhu's `facs_msc_youth_score_v1_1_cleaned_limb` and Zihan Zhou's `facs_msc_youth_score_v2_1`:
+
+```text
+model_comparison_v1_1_v2_1/
+```
+
+Start with:
+
+```text
+model_comparison_v1_1_v2_1/FACS_and_Droplet_v1_1_vs_v2_1_combined_comparison_report.md
+```
+
+The comparison folder includes:
+
+- FACS same-input frozen scorer application;
+- Droplet cross-assay sensitivity;
+- internal validation summary separating Kaile packaged donor OOF CV from Zihan nested LOMO;
+- paired donor bootstrap uncertainty analysis;
+- model concordance decomposition within and after age adjustment;
+- technical-variable audits;
+- FACS gene-signature overlap analysis.
+
+Important interpretation boundary: the comparison supports directionally consistent young-old state separation for both active models, but it does not prove that either model is technically independent or externally validated. Paired donor bootstrap does not establish statistically supported overall superiority of Kaile v1.1 over Zihan v2.1, although Kaile v1.1 shows more consistent descriptive age ordering.
+
+The older FACS v1/v2 folders are preserved only to keep prior analyses reproducible. See each model directory and the comparison directory for detailed documentation, scoring files, validation results, and limitations.
