@@ -59,7 +59,8 @@ torch.manual_seed(SEED)
 # "individual": loop over TFS_TO_PERTURB, one InSilicoPerturber call per gene (each run in
 #          its own output subdirectory, see module docstring), then assemble the per-gene
 #          goal-state shifts into a single ranking table. This is the primary deliverable
-#          format (CLAUDE.md section 1: a ranking table of candidate factors).
+#          format: a ranking table of candidate factors by predicted shift toward the young
+#          cell state.
 MODE = "individual"
 
 # These two cell counts are deliberately separate constants, not one shared value, because
@@ -131,7 +132,7 @@ def get_state_embs(out_dir):
     Path(out_dir).mkdir(parents=True, exist_ok=True)
 
     embex = EmbExtractor(
-        model_type="Pretrained",   # zero-shot, no fine-tuning (CLAUDE.md section 2)
+        model_type="Pretrained",   # zero-shot: pretrained checkpoint only, never fine-tuned on our mice
         num_classes=0,
         emb_mode="cell",           # V1 has no <cls> token
         max_ncells=STATE_EMB_NCELLS,
