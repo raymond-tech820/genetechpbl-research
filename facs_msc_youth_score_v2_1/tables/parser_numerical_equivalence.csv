@@ -1,0 +1,6 @@
+"model","n_samples","min_gene_coverage","min_weighted_coverage","max_abs_raw_score_diff","max_abs_calibrated_score_diff"
+"factorial_medium_original",14,1,1,1.33226762955019e-15,1.05037506470396e-15
+"factorial_large_original",14,1,1,1.33226762955019e-15,3.33066907387547e-15
+"factorial_stability_selected",14,1,1,1.33226762955019e-15,1.11022302462516e-15
+"factorial_medium_equal_weight",14,1,1,1.11022302462516e-15,2.44249065417534e-15
+"age_only_de",14,1,1,2.66453525910038e-15,1.11022302462516e-15

@@ -1,0 +1,2 @@
+"score_type","n_mice","spearman_cell_median_vs_pseudobulk_raw","pearson_cell_median_vs_pseudobulk_raw","spearman_cell_mean_vs_pseudobulk_raw","bootstrap_stability","cell_score_interpretation"
+"weighted_medium_module_score",12,0.993006993006993,0.963877034430596,0.993006993006993,"not_assessed","module_score_sensitivity_not_primary_pseudobulk_parser"

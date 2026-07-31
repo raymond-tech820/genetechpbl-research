@@ -1,0 +1,13 @@
+mouse_id,age,age_months,age_group,sex,subtissue,n_cells
+3-F-56,3m,3,Young,female,,715
+3-F-57,3m,3,Young,female,,753
+18-F-50,18m,18,Old,female,Pre-Sort,400
+18-F-51,18m,18,Old,female,Pre-Sort,271
+18-M-52,18m,18,Old,male,,1328
+18-M-53,18m,18,Old,male,,958
+21-F-54,21m,21,Old,female,,930
+21-F-55,21m,21,Old,female,,1077
+24-M-58,24m,24,Old,male,,921
+24-M-59,24m,24,Old,male,,950
+24-M-60,24m,24,Old,male,,746
+24-M-61,24m,24,Old,male,,600

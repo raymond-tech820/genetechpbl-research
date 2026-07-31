@@ -1,0 +1,4 @@
+"version","old_male_median","old_female_median","old_male_minus_female_median","standardized_median_gap","wilcoxon_p","permutation_p_median_gap","interpretation_note"
+"Small",0.084189813779324,0.200595100324858,-0.116405286545535,-1.22120448099514,0.45554509378933,0.191080891910809,"p_values_auxiliary_do_not_define_acceptance"
+"Medium",0.080921203420869,0.240511363224693,-0.159590159803824,-1.15511362177959,0.24095466870157,0.242775722427757,"p_values_auxiliary_do_not_define_acceptance"
+"Large",0.0794367409840032,0.228856298590075,-0.149419557606072,-1.1207659111225,0.24095466870157,0.250874912508749,"p_values_auxiliary_do_not_define_acceptance"

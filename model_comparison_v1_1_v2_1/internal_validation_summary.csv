@@ -1,0 +1,3 @@
+model,validation_source,auc,all_age_rho,old_only_rho,young_old_median_diff,notes
+Kaile v1.1 gene_signature,packaged donor OOF CV,0.9791666666666666,-0.8766695218549865,-0.6546536707079771,0.7449328338803778,OOF held-out donor scores; closest available v1.1 internal validation evidence.
+Zihan v2.1 factorial_medium_original,nested LOMO with fold-specific feature selection,0.979166666666667,-0.632889761766969,0.654653670707977,0.263116072872406,Primary predefined v2.1 validation evidence; not full-data same-input application.

@@ -1,0 +1,6 @@
+"model","signature_size","young_high_n","old_high_n","young_reference_center","old_reference_center","calibration_denominator","training_gene_filter_cpm_threshold","training_gene_filter_min_mice","filtered_gene_count","scoring_transform","de_normalization"
+"factorial_medium_original",100,50,50,1.36398674884822,-1.02437963814015,2.38836638698837,1,2,12859,"log2(CPM + 1), frozen training gene mean/sd z-score","edgeR TMM + limma voom"
+"factorial_large_original",200,100,100,1.37826289294072,-0.973256248334754,2.35151914127547,1,2,12859,"log2(CPM + 1), frozen training gene mean/sd z-score","edgeR TMM + limma voom"
+"factorial_stability_selected",57,29,28,1.45014306706085,-1.10841055605753,2.55855362311839,1,2,12859,"log2(CPM + 1), frozen training gene mean/sd z-score","edgeR TMM + limma voom"
+"factorial_medium_equal_weight",100,50,50,1.32402373540335,-0.996853114667806,2.32087685007115,1,2,12859,"log2(CPM + 1), frozen training gene mean/sd z-score","edgeR TMM + limma voom"
+"age_only_de",100,50,50,1.56675353810316,-1.15415466382202,2.72090820192518,1,2,12859,"log2(CPM + 1), frozen training gene mean/sd z-score","edgeR TMM + limma voom"

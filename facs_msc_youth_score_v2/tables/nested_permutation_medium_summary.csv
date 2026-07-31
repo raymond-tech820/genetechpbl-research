@@ -1,0 +1,4 @@
+"metric","role","observed","null_median","null_ci_low","null_ci_high","empirical_p","p_mode","valid_null_n"
+"abs_all_age_rho","primary",0.712586991026513,0.337541206275717,0.0140642169281549,0.806348437214212,0.103,"upper_tail_abs_spearman",999
+"auc_distance_from_half","supporting",0.5,0.208333333333333,0,0.5,0.036,"upper_tail_abs_auc_minus_0.5",999
+"young_minus_old_median","recorded_not_primary",0.264829394322008,-0.0748254554284162,-0.295665054308502,0.166245243173273,0.006,"upper_tail_positive_difference",999

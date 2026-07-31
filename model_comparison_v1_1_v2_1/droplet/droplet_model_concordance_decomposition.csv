@@ -1,0 +1,6 @@
+dataset,subset,n_donors,spearman,pearson
+Droplet,all_donors,12,0.8041958041958043,0.8490519841787104
+Droplet,young_only,2,,
+Droplet,old_only,10,0.7212121212121211,0.7261041775468475
+Droplet,age_group_residualized,12,0.7342657342657343,0.7295645468832075
+Droplet,age_months_residualized,12,0.5664335664335665,0.5165014884250849

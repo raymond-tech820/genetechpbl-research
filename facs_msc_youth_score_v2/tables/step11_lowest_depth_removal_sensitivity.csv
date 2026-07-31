@@ -1,0 +1,4 @@
+"signature_version","removed_mouse","all_spearman_age_after_removal","old_only_spearman_age_after_removal","auc_after_removal","score_cor_library_after_removal"
+"Small","3_9_M",-0.733799385705343,0.109108945117996,1,-0.813186813186813
+"Medium","3_9_M",-0.663913729923882,0.436435780471985,1,-0.846153846153846
+"Large","3_9_M",-0.640618511330061,0.545544725589981,1,-0.840659340659341

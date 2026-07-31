@@ -1,0 +1,4 @@
+metric,value
+spearman_v1_1_vs_v2_1,0.6835164835164835
+pearson_v1_1_vs_v2_1,0.911655161289073
+max_abs_rank_delta,7.0

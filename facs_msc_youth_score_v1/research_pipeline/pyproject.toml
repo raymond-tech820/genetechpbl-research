@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tms-youth-score"
+version = "0.1.0"
+description = "Donor-aware Youth Score models for Tabula Muris Senis and partial reprogramming data."
+requires-python = ">=3.12,<3.13"
+authors = [{name = "Genetech Project"}]
+dependencies = []
+
+[project.scripts]
+youth-score = "youth_score.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+

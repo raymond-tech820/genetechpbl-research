@@ -1,0 +1,39 @@
+project_root: .
+dataset_id: limb_facs
+role: secondary
+modality: facs
+tissue: Limb_Muscle
+cell_type: mesenchymal stem cell
+# The TMS coarse tissue field labels diaphragm cells as Limb_Muscle.  These
+# 18-month cells occur only in old donors and are therefore age-confounded.
+excluded_subtissues: [Muscle Diaphragm]
+young_ages: [3m]
+old_ages: [18m, 24m]
+sensitivity_ages: []
+expected_cells: 815
+expected_young_cells: 264
+expected_old_cells: 551
+expected_young_mice: 6
+expected_old_mice: 8
+minimum_detected_genes: 500
+folds: 5
+seeds: [20260717, 20260718, 20260719]
+feature_count: 4096
+sequence_length: 256
+expression_bins: 64
+model:
+  d_model: 128
+  heads: 8
+  layers: 2
+  feedforward: 512
+  dropout: 0.2
+  token_dropout: 0.15
+  age_loss_weight: 0.25
+training:
+  batch_size: 64
+  learning_rate: 0.0003
+  weight_decay: 0.01
+  max_epochs: 80
+  patience: 12
+  gradient_clip: 1.0
+  num_workers: 0

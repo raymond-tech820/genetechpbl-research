@@ -1,0 +1,17 @@
+"model","training_assay","test_assay","metric","observed","boot_median","ci_low","ci_high","valid_bootstrap_n","total_bootstrap_n"
+"Droplet_v1__Medium","Droplet_v1","Droplet","auc_young_vs_old",1,1,1,1,8824,10000
+"Droplet_v1__Medium","Droplet_v1","Droplet","all_age_rho",-0.938933265493466,-0.932697106440271,-0.979105007923743,-0.774115373914211,10000,10000
+"Droplet_v1__Medium","Droplet_v1","Droplet","old_only_rho",-0.895273785785751,-0.884651736929383,-0.96379974715012,-0.639009650422694,9998,10000
+"Droplet_v1__Medium","Droplet_v1","Droplet","raw_library_rho",0.132867132867133,0.142857142857143,-0.445275166727931,0.618705035971223,10000,10000
+"Droplet_v1__Medium","Droplet_v1","Droplet","effective_library_rho",0.0979020979020979,0.107011070110701,-0.489055033345586,0.594101193680976,10000,10000
+"Droplet_v1__Medium","Droplet_v1","Droplet","detected_genes_rho",0.181818181818182,0.180034064621095,-0.458483754512635,0.714285714285714,10000,10000
+"Droplet_v1__Medium","Droplet_v1","Droplet","cell_count_rho",0.0629370629370629,0.0709219858156028,-0.490909090909091,0.584905660377358,10000,10000
+"Droplet_v1__Medium","Droplet_v1","Droplet","young_minus_old_median",1,1,0.76171074874968,1.05687454305207,8824,10000
+"FACS_v2__factorial_medium_original","FACS_v2","Droplet","auc_young_vs_old",1,1,1,1,8873,10000
+"FACS_v2__factorial_medium_original","FACS_v2","Droplet","all_age_rho",-0.873426293482294,-0.880903251295572,-0.971008312455225,-0.537805107364413,10000,10000
+"FACS_v2__factorial_medium_original","FACS_v2","Droplet","old_only_rho",-0.778498944161523,-0.793884186037445,-0.951405493884234,-0.233466111325881,9993,10000
+"FACS_v2__factorial_medium_original","FACS_v2","Droplet","raw_library_rho",-0.237762237762238,-0.23943661971831,-0.707165015641293,0.4,10000,10000
+"FACS_v2__factorial_medium_original","FACS_v2","Droplet","effective_library_rho",-0.258741258741259,-0.261648745519713,-0.735714285714286,0.372284562588517,10000,10000
+"FACS_v2__factorial_medium_original","FACS_v2","Droplet","detected_genes_rho",0.118881118881119,0.120434063883112,-0.548387096774194,0.695652173913043,10000,10000
+"FACS_v2__factorial_medium_original","FACS_v2","Droplet","cell_count_rho",-0.307692307692308,-0.307142857142857,-0.717314487632509,0.314285714285714,10000,10000
+"FACS_v2__factorial_medium_original","FACS_v2","Droplet","young_minus_old_median",0.150404564092637,0.150404564092637,0.061614461424105,0.225921603555269,8873,10000

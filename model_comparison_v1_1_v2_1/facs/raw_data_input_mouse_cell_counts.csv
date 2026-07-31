@@ -1,0 +1,15 @@
+mouse.id,age,age_months,age_group,sex,subtissue,n_cells
+3_8_M,3m,3,Young,male,ForelimbandHindlimb,75
+3_9_M,3m,3,Young,male,ForelimbandHindlimb,17
+3_10_M,3m,3,Young,male,ForelimbandHindlimb,28
+3_11_M,3m,3,Young,male,ForelimbandHindlimb,14
+3_38_F,3m,3,Young,female,ForelimbandHindlimb,77
+3_39_F,3m,3,Young,female,ForelimbandHindlimb,53
+18_45_M,18m,18,Old,male,forelimb and hindlimb,31
+18_46_F,18m,18,Old,female,Muscle forelimb and hindlimb,82
+18_47_F,18m,18,Old,female,Muscle forelimb and hindlimb,76
+18_53_M,18m,18,Old,male,Muscle forelimb and hindlimb,45
+24_58_M,24m,24,Old,male,ForelimbandHindlimb,79
+24_59_M,24m,24,Old,male,ForelimbandHindlimb,68
+24_60_M,24m,24,Old,male,ForelimbandHindlimb,91
+24_61_M,24m,24,Old,male,ForelimbandHindlimb,79

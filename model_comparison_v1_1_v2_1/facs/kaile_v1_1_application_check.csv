@@ -1,0 +1,7 @@
+check,value
+n_matched_donors,14.0
+external_min_gene_overlap,1.0
+external_auc,1.0
+packaged_oof_auc,0.9791666666666666
+spearman_external_vs_oof,0.9648351648351648
+max_abs_external_minus_oof,0.12168713567303235

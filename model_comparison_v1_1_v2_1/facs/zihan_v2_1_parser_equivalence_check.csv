@@ -1,0 +1,6 @@
+check,value
+n_matched,14.0
+max_abs_calibrated_score_diff,0.0
+max_abs_raw_score_diff,0.0
+min_gene_coverage_new,1.0
+min_weighted_coverage_new,1.0
