@@ -14,3 +14,15 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 .pybiomart.sqlite
+!results/
+results/*
+!results/token_length_sweep.csv
+!results/token_length_sweep_full.csv
+!results/axis_validation_summary.json
+!results/axis_validation_deconfound.json
+!results/axis_validation_ngenes_confound_test.json
+!results/axis_validation_donor_loo.csv
+!results/droplet_donor_ngenes_distribution.csv
+!results/figures/
+results/figures/*
+!results/figures/token_sweep.png

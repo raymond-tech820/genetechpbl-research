@@ -1,0 +1,30 @@
+{
+  "donor_level_all_cells": {
+    "u_stat": 6.0,
+    "u_p": 0.01998001998001998,
+    "t_stat": -3.1143746555273046,
+    "t_p": 0.009085308802514649,
+    "old_donor_mean_of_means": 1767.58874060077,
+    "young_donor_mean_of_means": 2733.548095974811,
+    "n_old_donors": 8,
+    "n_young_donors": 6
+  },
+  "donor_level_inband": {
+    "u_stat": 8.0,
+    "u_p": 0.042624042624042624,
+    "t_stat": -2.5062644729473593,
+    "t_p": 0.02790284741030889,
+    "old_donor_mean_of_means": 2215.008007708666,
+    "young_donor_mean_of_means": 2571.401246616217,
+    "n_old_donors": 8,
+    "n_young_donors": 6
+  },
+  "cell_level_inband_supplementary": {
+    "u_stat": 16373.0,
+    "u_p": 0.02762733860422472,
+    "old_cell_mean": 2389.10582010582,
+    "young_cell_mean": 2481.7688442211056,
+    "n_old_cells": 189,
+    "n_young_cells": 199
+  }
+}
