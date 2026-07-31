@@ -11,6 +11,7 @@ This repository temporarily contains MSC Youth Score model deliverables and mode
 | [`facs_msc_youth_score_v1_1_cleaned_limb`](./facs_msc_youth_score_v1_1_cleaned_limb/) | Kaile Zhu | Current Kaile FACS model for comparison and further refinement, retrained after explicit exclusion of age-confounded diaphragm cells. |
 | [`facs_msc_youth_score_v2`](./facs_msc_youth_score_v2/) | Zihan Zhou | Deprecated FACS v2 model, retained for provenance only. Use `facs_msc_youth_score_v2_1` for the current Zihan model. |
 | [`facs_msc_youth_score_v2_1`](./facs_msc_youth_score_v2_1/) | Zihan Zhou | Current Zihan FACS model for comparison and further refinement, retrained on diaphragm-excluded TMS FACS limb-muscle MSC pseudobulk data. |
+| [`geneformer_perturbation`](./geneformer_perturbation/) | Jia Qi Choy | Zero-shot Geneformer in-silico perturbation arm. Diagnoses that the Old-to-Young embedding axis is confounded with sequencing depth and not interpretable on this cohort; see folder for full methods log. |
 
 ## Active Model Comparison
 

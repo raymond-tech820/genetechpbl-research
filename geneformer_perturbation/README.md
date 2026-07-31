@@ -1,52 +1,74 @@
-# Geneformer: MSC in-silico perturbation
+# Geneformer perturbation arm
 
-My piece of the cellular-rejuvenation project: use **Geneformer** to predict how
-transcription factors / reprogramming factors shift limb-muscle MSCs toward a
-"younger" state, and flag when they also push toward the risky (identity-loss /
-proliferative) state.
+Zero-shot in-silico perturbation prediction for the cellular rejuvenation
+project, using Geneformer-V1-10M on the TMS FACS limb-muscle MSC cohort.
 
-- **Cell type:** limb muscle–derived MSCs (same population as the Youth Score work)
-- **Aging reference:** Tabula Muris Senis (TMS)
-- **Reprogramming data:** GSE176206 (Gill et al. 2022, *Cell Systems*, Dox pulse/chase)
-- **Model:** Geneformer (human-pretrained → mouse genes need ortholog mapping)
+Contributor: Jia Qi Choy
+
+## What this arm does
+
+Predicts how overexpressing candidate transcription factors shifts aged
+limb-muscle MSCs toward a young reference state, and validates whether that
+reference axis is biologically meaningful before any prediction is trusted.
+
+## Key finding
+
+The Old-to-Young embedding axis is confounded with sequencing depth
+(detected-gene count, Pearson r = 0.69), and depth is inseparable from age in
+this cohort, replicated across the FACS and Droplet assays. Fixed-length input
+truncation reduces the confound but floors near r = 0.5 and does not survive
+donor-level aggregation. The perturbation ranking is therefore not
+interpretable on this cohort. The arm's contribution is this characterised
+negative and a validation criterion: a usable aging axis must show donor-level
+separation that survives conditioning on detected-gene count.
+
+Full methods and results: [`work_progress.md`](./work_progress.md).
+
+## Layout
+
+- `src/` — pipeline (ortholog mapping, tokenization, perturbation) and analysis
+  scripts (axis validation, deconfounding, token-length sweep)
+- `work_progress.md` — full methods log and results
+- `results/` — summary tables and figures (large artifacts gitignored)
+- `data/external/` — teammate reference files
+- `environment.yml` — conda environment
+
+## Data
+
+- Aging reference: Tabula Muris Senis (TMS) FACS limb-muscle MSC
+- Reprogramming data: GSE176206 (Roux et al. 2022, *Cell Systems*)
+- Model: Geneformer-V1-10M, human-pretrained (mouse genes ortholog-mapped)
 
 ---
 
-## 0. Pick the right model for your GPU
+# Setup notes
 
-Geneformer ships several checkpoints. The default is large; on a small GPU use the
-smallest one first and only scale up on a server.
+## Model choice
+
+Geneformer ships several checkpoints. This arm uses the smallest, V1-10M, which
+runs on a laptop GPU; larger checkpoints need a server.
 
 | Model | Params | Input size | Rough VRAM | Use when |
 |---|---|---|---|---|
-| Geneformer-V1-10M | 10M | 2048 | ~2–4 GB | laptop / first pass (start here) |
-| Geneformer-V2-104M | 104M | 4096 | ~10–16 GB | server GPU |
-| Geneformer-V2-316M | 316M (default) | 4096 | 24 GB+ | big server GPU only |
+| Geneformer-V1-10M | 10M | 2048 | ~2-4 GB | laptop / first pass (used here) |
+| Geneformer-V2-104M | 104M | 4096 | ~10-16 GB | server GPU |
+| Geneformer-V2-316M | 316M | 4096 | 24 GB+ | large server GPU only |
 
-Start with **V1-10M** to get the whole pipeline working end-to-end, then swap the
-model path to a bigger one on a server if you have time. Getting a result you can
-explain beats getting the biggest model to load.
+V1 and V2 use **different token dictionaries and gene-median files**. If the
+model is switched, the matching dictionary files must be switched too; the
+tokenizer takes them as arguments. Do not mix a V1 dictionary with a V2 model.
+This arm uses V1-10M with the gc30M dictionary throughout.
 
-> Note: V1 and V2 use **different token dictionaries and gene-median files**. If you
-> switch models, you must switch the matching dictionary files too (the tokenizer
-> takes them as arguments). Don't mix a V1 dictionary with a V2 model.
-
----
-
-## 1. Environment
+## Environment
 
 ```bash
-# clone this project, then:
 conda env create -f environment.yml
 conda activate genetech-gf
 
-# install Geneformer itself (it lives on Hugging Face, not PyPI)
-# needs git-lfs: https://git-lfs.com
+# Geneformer installs from Hugging Face, not PyPI (needs git-lfs)
 git lfs install
 git clone https://huggingface.co/ctheodoris/Geneformer
-cd Geneformer
-pip install .
-cd ..
+cd Geneformer && pip install . && cd ..
 ```
 
 Sanity check:
@@ -55,57 +77,42 @@ Sanity check:
 python -c "import geneformer, scanpy, torch; print('ok', torch.cuda.is_available())"
 ```
 
-If `torch.cuda.is_available()` prints `False`, fix CUDA/PyTorch before going further,
-Geneformer needs a GPU to be usable.
+If `torch.cuda.is_available()` prints `False`, fix CUDA/PyTorch before running;
+Geneformer needs a GPU to be usable. Note: transformers must be pinned below
+version 5 (the environment file pins this); newer versions remove a symbol
+Geneformer imports.
 
----
-
-## 2. Run order
+## Run order
 
 ```bash
-# 1. build the mouse -> human ortholog table (run once, caches to a CSV)
-python src/01_map_orthologs.py
-
-# 2. load data, attach ensembl_id + n_counts, map to human genes, tokenize
-python src/02_prepare_tokenize.py
-
-# 3. run in-silico perturbation of candidate TFs and get the stats
-python src/03_in_silico_perturb.py
+python src/01_map_orthologs.py       # build mouse -> human ortholog table (once)
+python src/02_prepare_tokenize.py    # map to human genes, tokenize (model_version="V1")
+python src/03_in_silico_perturb.py   # in-silico overexpression + stats
 ```
 
-Each script has a `# TODO` block at the top for the paths / gene lists you need to fill in.
+Analysis scripts (`pseudobulk_axis.py`, `fixed_length_axis.py`,
+`fixed_length_axis_cellset_control.py`, `token_length_sweep.py`,
+`plot_figures_confound.py`) are documented step by step in `work_progress.md`.
 
----
+## Notes
 
-## 3. The gotchas (read before you start)
+1. **Species.** Geneformer is human-pretrained; the data is mouse. Genes are
+   mapped to human Ensembl IDs before tokenizing (step 1). One-to-one orthologs
+   only are kept: 62.3% of genes, 68.9% of count mass. This species mismatch is
+   central to the arm's finding, since the rank encoding uses human gene medians.
 
-1. **Species.** Geneformer is human-pretrained; TMS and GSE176206 are mouse. Everything
-   must be converted to **human Ensembl gene IDs** before tokenizing. That's what
-   step 1 is for. Genes with no 1:1 human ortholog get dropped, expect to lose some.
+2. **Perturbation targets.** Yamanaka and related factors (Pou5f1/OCT4, Sox2,
+   Klf4, Myc, plus Nanog, Lin28a, Myod1) are converted to human Ensembl IDs and
+   perturbed with `overexpress`, not delete.
 
-2. **Yamanaka factors are the perturbation targets.** Convert *Pou5f1/Oct4, Sox2, Klf4,
-   Myc* (+ any TFs the biology lead flags) to their **human Ensembl IDs** and feed those
-   as the genes to perturb. Perturb `overexpress` (reprogramming = forcing them on), not delete.
+3. **Goal state.** The perturber measures shift toward a target cell state:
+   start = old cells, goal = young cells, from the age labels. Positive
+   `Shift_to_goal_end` means movement toward young. See `cell_states_to_model`
+   in step 3.
 
-3. **"Younger" as a goal state.** Geneformer's perturber can measure the shift *toward a
-   target cell state*. Define start = old cells, goal = young cells (from the age labels),
-   and it scores each TF by how much it moves cells toward "young." That's our Youth axis
-   directly. (See the `cell_states_to_model` argument in step 3.)
+4. **Dictionary/version match.** The tokenizer and perturber must be run with
+   `model_version="V1"`; the default is V2, which silently mismatches the V1
+   checkpoint and mis-maps gene tokens without erroring.
 
-4. **API drift.** Geneformer's function arguments have changed across versions. The three
-   scripts follow the documented pattern, but **before running, open the example notebook
-   in the version you cloned** (`Geneformer/examples/in_silico_perturbation.ipynb` and
-   `.../tokenizing_scRNAseq_data.ipynb`) and match the argument names. Treat my scripts as
-   a skeleton, the notebook as ground truth.
-
-5. **Zero-shot first.** You do **not** need to fine-tune to get first results, run the
-   pretrained model zero-shot. Only fine-tune a cell-state classifier later if the
-   zero-shot shift isn't clean enough.
-
----
-
-## 4. What "done" looks like for this piece
-
-A table: for each candidate TF, its predicted shift toward "young" (Youth axis) and toward
-the risky state (Risk axis). The winners are the ones that move cells up on Youth without
-moving them up on Risk, i.e. the perturbations that land in the Safe Zone.
+5. **Zero-shot.** The model is run zero-shot, not fine-tuned, which avoids
+   fitting parameters to a small donor cohort.
