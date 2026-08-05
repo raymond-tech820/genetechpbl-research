@@ -1,0 +1,3 @@
+"model","role","stability_threshold","stable_pool_size","signature_size","young_high_n","old_high_n","calibration_denominator"
+"M1_raw_all_gene_denominator","primary_deployable_reference",0.75,58,58,30,28,2.65029029266973
+"M4_raw_all_gene_denominator_pi_0_90","post_ablation_exploratory_secondary",0.9,29,29,16,13,2.70224021996122

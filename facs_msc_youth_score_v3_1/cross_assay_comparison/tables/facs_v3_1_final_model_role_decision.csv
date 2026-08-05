@@ -1,0 +1,2 @@
+"scenario","primary_model","sensitivity_comparator","m4_upgraded","reason","identity_risk_coupling","technical_independence","continuous_aging_clock"
+"Scenario_A_closest_match","M1_raw_all_gene_denominator","M4_raw_all_gene_denominator_pi_0_90",FALSE,"Both models passed GSE and Droplet coverage and direction gates; their adjusted agreement was high; no prespecified Droplet M4-minus-M1 bootstrap interval excluded zero. M4 remains post-ablation.","not_assessable_no_frozen_scorer","not_demonstrated","not_established"
