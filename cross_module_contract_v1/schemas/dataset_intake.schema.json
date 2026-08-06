@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Dataset intake contract",
+  "type": "object",
+  "required": ["dataset_id", "source_path", "independent_donor_count", "raw_counts_available", "eligibility"],
+  "properties": {"dataset_id": {"type": "string"}, "source_path": {"type": "string"}, "independent_donor_count": {"type": ["integer", "string", "null"]}, "donors_per_age_group": {"type": ["object", "string", "null"]}, "sex_balance": {"type": ["string", "null"]}, "age_sex_confounding": {"type": ["string", "null"]}, "dataset_age_confounding": {"type": ["string", "null"]}, "assay_age_confounding": {"type": ["string", "null"]}, "tissue_compatibility": {"type": ["string", "null"]}, "msc_annotation_compatibility": {"type": ["string", "null"]}, "raw_counts_available": {"type": ["boolean", "string", "null"]}, "donor_resolved_metadata": {"type": ["boolean", "string", "null"]}, "paired_sample_metadata": {"type": ["boolean", "string", "null"]}, "gene_identifier_namespace": {"type": ["string", "null"]}, "eligibility": {"enum": ["eligible_training", "eligible_internal_validation", "eligible_external_validation", "eligible_cross_assay_sensitivity", "descriptive_only", "not_eligible", "TBD"]}},
+  "additionalProperties": true
+}
