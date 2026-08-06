@@ -1,0 +1,2 @@
+"model","stability_threshold","signature_size","young_high_n","old_high_n","young_reference_center","old_reference_center","calibration_denominator","filtered_gene_count","inner_eligible_folds","scoring_transform","de_normalization","minimum_weighted_coverage"
+"M4_raw_all_gene_denominator_pi_0_90",0.9,29,16,13,1.53929509744836,-1.16294512251286,2.70224021996122,12824,14,"log2(raw_all_gene_CPM + 1)","edgeR TMM plus limma voom",0.8

@@ -1,0 +1,5 @@
+"model","module","requested_genes","usable_genes","gene_coverage","weighted_coverage","coverage_pass"
+"M1_raw_all_gene_denominator","young_high",30,30,1,1,TRUE
+"M1_raw_all_gene_denominator","old_high",28,28,1,1,TRUE
+"M4_raw_all_gene_denominator_pi_0_90","young_high",16,16,1,1,TRUE
+"M4_raw_all_gene_denominator_pi_0_90","old_high",13,13,1,1,TRUE
