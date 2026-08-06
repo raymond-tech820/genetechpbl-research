@@ -1,0 +1,3 @@
+"model","max_abs_raw_difference","max_abs_calibrated_difference","max_abs_existing_score_change_after_sample_addition","full_gene_coverage","full_weighted_coverage","full_coverage_pass","low_coverage_error_triggered"
+"M1_raw_all_gene_denominator",1.11022302462516e-15,1.99840144432528e-15,0,1,1,TRUE,TRUE
+"M4_raw_all_gene_denominator_pi_0_90",2.44249065417534e-15,1.17961196366423e-15,0,1,1,TRUE,TRUE

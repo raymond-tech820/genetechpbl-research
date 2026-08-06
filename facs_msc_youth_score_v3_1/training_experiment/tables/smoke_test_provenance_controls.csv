@@ -1,0 +1,11 @@
+"check","passed"
+"observed_scores_match_controlled_ablation",TRUE
+"all_requested_permutations_present",TRUE
+"all_permutations_valid_for_both_models",TRUE
+"all_assignments_unique",TRUE
+"all_assignments_preserve_sex_age_counts",TRUE
+"all_runs_have_14_scores_per_model",TRUE
+"no_zero_signature_folds",TRUE
+"no_rank_deficient_outer_folds",TRUE
+"observed_four_weak_support_folds",TRUE
+"shared_assignments_for_m1_m4",TRUE

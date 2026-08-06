@@ -1,0 +1,8 @@
+"file","bytes","md5"
+"calibration.csv",427,"b796e5461c004f157a45686d60ec2f51"
+"README.md",1859,"cfe102cde52c3c0803444265204916be"
+"score_facs_v3_1_frozen_model.R",5183,"9de53305de150fb93aee3a7b1ce56947"
+"signature.csv",19296,"bbc0e6d2245acfbdce8ee00aa36078a3"
+"synthetic_expected_scores.csv",632,"e09c4d7a7dc6e7e0539539d382949102"
+"synthetic_raw_counts.csv",5128,"e4d60c050eac836f35e6af2933053f4a"
+"validate_model_package.R",1111,"512b182129ec32a2df2da34fb68e4fbb"
