@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cell metadata contract",
+  "type": "object",
+  "required": ["cell_id", "dataset_id", "donor_id", "age_group", "condition"],
+  "properties": {"cell_id": {"type": "string"}, "dataset_id": {"type": "string"}, "donor_id": {"type": ["string", "null"]}, "age_group": {"type": ["string", "null"]}, "condition": {"type": ["string", "null"]}, "treatment": {"type": ["string", "null"]}, "sex": {"type": ["string", "null"]}, "tissue": {"type": ["string", "null"]}, "subtissue": {"type": ["string", "null"]}, "n_counts": {"type": ["number", "null"]}, "n_genes": {"type": ["number", "null"]}},
+  "additionalProperties": true
+}

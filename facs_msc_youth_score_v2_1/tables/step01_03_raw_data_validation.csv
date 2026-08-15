@@ -1,0 +1,12 @@
+"metric","value","expected","passed"
+"cells",815,815,TRUE
+"genes",22966,22966,TRUE
+"mice",14,14,TRUE
+"young_cells_3m",264,264,TRUE
+"old_cells_18m_24m",551,551,TRUE
+"diaphragm_cells",0,0,TRUE
+"tissue_limb_muscle_cells",815,815,TRUE
+"msc_cells",815,815,TRUE
+"all_subtissue_standardized_fore_hind",815,815,TRUE
+"metadata_count_delta_zero",813,815,FALSE
+"metadata_gene_delta_zero",815,815,TRUE

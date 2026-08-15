@@ -1,0 +1,184 @@
+
+
+===== PAGE 1 =====
+AI for Safe Cellular Rejuvenation
+Draft sections: Introduction, and the perturbation-prediction arm
+Jia Qi Choy, Mashiro Yasuda, Kaile Zhu, Kei Hasegawa, Zihan Zhou, Liu Bowen
+July, 2026
+[integration note: This file contains (i) a full draft Introduction for the whole paper, and (ii)
+the Methods and Results subsections for the Geneformer perturbation arm, written to drop into
+the merged manuscript. Section numbers here are local; renumber on merge. Grey bracketed notes
+mark where other members’ content joins and should be deleted before submission.]
+1 Introduction
+Ageing is accompanied by progressive, characteristic changes in gene expression that degrade cellu-
+lar function. A central observation of the past two decades is that these changes are not necessarily
+permanent: transient expression of the Yamanaka factors (Sox2,Oct4,Klf4,Myc; hereafter SOKM),
+the same factors that convert somatic cells into induced pluripotent stem cells, can restore youthful
+expression patterns in aged cells without driving them to full pluripotency. This process is termed
+partial, or transient, reprogramming.
+The approach carries an intrinsic tension. The process that restores youthful expression also
+suppresses the programmes that define somatic cell identity. Pushed too far, cells lose identity, with
+associated risks of senescence, uncontrolled proliferation, and tumour formation. Any therapeutic
+use of partial reprogramming therefore depends on identifying conditions that rejuvenate without
+crossing into unsafe cell states.
+Recent single-cell work has made this tension tractable. Roux et al. [1] mapped the identity
+trajectory induced by partial reprogramming across several murine cell types and screened subsets
+of the Yamanaka factors. They reported that partial reprogramming restored youthful expression in
+mesenchymal and adipogenic stem cells while transiently suppressing somatic identity programmes,
+and, critically, that rejuvenation and identity suppression were not tightly coupled: different factor
+combinations produced different balances of the two effects.
+That decoupling is the premise of this project. If rejuvenation and risk were perfectly correlated,
+no safe reprogramming condition could exist. Because they are separable, a safe operating window
+plausibly exists, and the problem becomes one of search. The search space is large: the four
+Yamanaka factors alone yield fifteen non-empty subsets, and the full space extends across dose,
+duration, delivery timing, additional transcription factors, and small-molecule alternatives. Gene
+regulatory networks make the effects of such interventions difficult to predict from first principles,
+and exhaustive experimental screening is infeasible.
+This motivates a computational framework with two capabilities: (i) to quantify how young,
+and how risky, a given cell state is, and (ii) to predict the effect of an intervention that has not been
+experimentally tested. We decompose the problem into three components. AYouth Scoremeasures
+how closely a cell’s expression profile resembles that of a young cell. ARisk Scoremeasures unsafe
+cell states along three axes: dedifferentiation and identity loss, inflammation and senescence, and
+1
+
+===== PAGE 2 =====
+abnormal proliferation and tumorigenicity. Aperturbation-predictionmodule proposes candidate
+interventions that the scoring modules, which can only evaluate conditions already present in data,
+cannot themselves generate. Together the two scores define a Youth–Risk state space in which the
+target region, the “safe zone”, is high youth and low risk.
+[integration note: Zihan/Kaile Youth Score contributions, Kei Risk Score contributions, and
+Mashiro’s integration objective are summarised in the following paragraph on merge. The present
+draft covers the perturbation-prediction arm below.]
+This report presents the perturbation-prediction arm in full. Its intended role was to rank
+candidate transcription factors by their predicted effect on the youth axis. We show that, on the
+cohort available, this goal is not attainable for a specific and generalisable reason: the aging axis a
+foundation model recovers in this data is confounded with transcript complexity, and that confound
+is not separable from age with the data at hand. We report this as a characterised negative result,
+and we show that the underlying confound replicates across two independent assays, which reframes
+it from a property of one dataset into a constraint on the modelling strategy itself.
+2 Methods: perturbation prediction
+[integration note: This becomes a subsection of the shared Methods section on merge.]
+2.1 Model and rationale
+We used Geneformer [2], a transformer pretrained on approximately 30 million human single cells,
+in a zero-shot setting: the model was not fine-tuned on our cohort. This choice was deliberate.
+A gene-token transformer trained from scratch on this project’s data underperformed a simple
+gene-signature classifier, consistent with model capacity exceeding the information available in a
+cohort of roughly fifteen donors. Zero-shot inference fits no parameters to our donors and therefore
+avoids that failure mode. We used theGeneformer-V1-10Mcheckpoint (six layers, input size 2048,
+vocabulary 25 426) with its matchedgc30Mtoken dictionary.
+2.2 Data and gene mapping
+The analysis used the Tabula Muris Senis FACS limb-muscle mesenchymal stem cell (MSC) cohort
+in raw counts. After excluding 120 cells annotated as diaphragm rather than limb muscle (Sec-
+tion 3.3), 815 cells remained: 264 young (3 months, 6 donors) and 551 old (18 and 24 months,
+8 donors). Because Geneformer is human-pretrained, mouse genes were mapped to human or-
+thologs via Ensembl BioMart, retaining one-to-one orthologs only: 14 314 of 22 966 genes (62.3 %),
+corresponding to 68.9 % of total count mass.
+2.3 In-silico perturbation and the goal-state axis
+Perturbations were performed with Geneformer’sInSilicoPerturber(perturb type = overexpress,
+emb mode = cell). Overexpression is represented by promoting the target gene’s token to the top
+of a cell’s rank-value encoding; a gene need not be expressed in the cell to be a valid target. The
+goal state was defined by two centroids in embedding space, the mean embeddings of old and
+young cells. The reported metric,Shift to goal end, is the perturbed cell’s cosine similarity to
+the young centroid minus that of the unperturbed cell, so that positive values denote movement
+toward the young state. The sign convention was verified against the model source rather than
+assumed. All runs used a fixed seed.
+2
+
+===== PAGE 3 =====
+Table 1: Single-gene perturbation shifts (cell-level means over 551 old cells; not donor aggregated).
+Per-cell standard deviation exceeds the mean shift for every factor.
+Factor Mean shift Per-cell SD mean / SD
+MYC +0.000104 0.00327 0.032
+OCT4−0.000016 0.00431 0.004
+LIN28A−0.000135 0.00424 0.032
+SOX2−0.000249 0.00430 0.058
+KLF4−0.000269 0.00366 0.074
+NANOG−0.000276 0.00427 0.065
+MYOD1−0.000284 0.00428 0.066
+2.4 Axis validation
+Because the perturbation metric is measured entirely along the old–young centroid axis, we tested
+whether that axis separates young from aged cells before interpreting any perturbation value.
+We extracted per-cell embeddings for all 815 cells and evaluated separation at the donor level,
+the appropriate unit of replication, using leave-one-donor-out nearest-centroid classification with a
+1000-draw donor-label permutation control. We then assessed technical confounding by correlating
+each cell’s position along the old–young axis with its total counts and its detected-gene count,
+and tested whether separation survived (i) regressing detected-gene count out of each embedding
+dimension and (ii) restricting to a matched detected-gene-count band. Finally, we tested whether
+detected-gene count itself differs by age at the donor level, and repeated the same test on the
+independent Tabula Muris Senis Droplet limb-MSC cohort.
+3 Results: perturbation prediction
+[integration note: This becomes a subsection of the shared Results section on merge.]
+3.1 Preliminary perturbation output
+The pipeline ran end to end at approximately 30 s per gene. Seven candidate factors were perturbed
+individually (Table 1). The values are small in absolute terms and, for every factor, the per-cell
+standard deviation exceeds the mean shift by a factor of roughly 15 to 25. The four SOKM
+factors run as a single combined condition gave a positive shift (+0.000 166) while three of the
+four individual components were negative, an internal inconsistency. We therefore treat Table 1 as
+pipeline output rather than as a result, pending validation of the axis along which it is measured.
+3.2 The goal-state axis is confounded with transcript complexity
+At the donor level the old–young axis separated the two groups only weakly: leave-one-donor-out
+accuracy was 11 of 14, permutationp= 0.050, exactly at the conventional threshold. All three
+misclassified donors were young mice assigned to the old group, and each sat near the old centroid,
+indicating that the axis succeeds for some young donors and fails for others rather than separating
+the groups uniformly.
+The cause is technical. Each cell’s position along the axis correlated with its detected-gene count
+at Pearsonr= 0.69 (p≈10 −116), while its correlation with total counts was negligible (r=−0.02).
+3
+
+===== PAGE 4 =====
+Table 2: Donor-level separation before and after accounting for detected-gene count.
+Analysis Donor LOO Permutationp
+Raw embeddings 11/14 0.050
+Detected-gene count regressed out 8/14 0.531
+Restricted to matched depth band 10/14 0.094
+Removing this association removed the separation (Table 2): regressing detected-gene count out of
+the embeddings reduced donor accuracy to 8 of 14 and the permutationpto 0.53, and restricting to
+a matched detected-gene-count band gavep= 0.09. Under either correction, young–old separation
+is no longer significant.
+3.3 Age and transcript complexity are not separable in this cohort
+Separation collapsed under correction because detected-gene count is itself confounded with age.
+Old donors averaged 1768 detected genes and young donors 2734 (Welchp= 0.009; Mann–Whitney
+p= 0.020), and the difference persisted within the matched band (2215 vs 2571;p= 0.028). Age
+and transcript complexity thus cannot be disentangled with the data available: correcting for one
+removes much of the other.
+We emphasise that lower detected-gene count in aged cells is not necessarily a pure technical
+artifact; a genuine decline in transcriptional output with age would produce the same signal. The
+finding is therefore that age and detected-gene count are inseparable in this cohort, not that the axis
+is purely artifactual. Either way, perturbation shifts measured along this axis cannot be interpreted
+as movement along a biological aging axis.
+3.4 The confound replicates across assays
+To test whether this is specific to the FACS cohort, we repeated the donor-level test on the indepen-
+dent Tabula Muris Senis Droplet limb-MSC cohort, which does not share the FACS preprocessing
+pipeline. The direction replicated: old cells averaged 1766 detected genes and young cells 2023
+(Welchp= 0.0007; Mann–Whitneyp= 0.03). Because the two assays do not share artifact-
+generating steps, their agreement argues that the age–complexity association is a recurring feature
+of aged MSC data rather than an artifact of one protocol. Two caveats temper the Droplet result:
+it contains only two young donors, both female, so it corroborates rather than independently es-
+tablishes the effect and cannot separate age from sex; and the effect size differs markedly between
+assays (a gap of∼970 detected genes in FACS versus∼260 in Droplet), consistent with a mixture
+of genuine biology and assay-dependent technical behaviour.
+Discussion contribution
+[integration note: These paragraphs feed the shared Discussion; they are not a standalone section.]
+The perturbation arm returned a negative but diagnostic result. On the available cohort,
+a human-pretrained foundation model recovers an aging axis that is substantially a transcript-
+complexity axis, and because complexity is confounded with age at the donor level, the confound
+cannot be removed with these data. The same age–complexity association appears in a second
+assay, which converges with an independent observation from the Youth Score analysis, where
+a purely technical principal component separated age groups at AUC 0.854.[integration note:
+4
+
+===== PAGE 5 =====
+cross-ref Zihan’s PC1 result once numbered.]Two methods and two assays thus point to the same
+limitation: this cohort carries technical structure aligned with age that is difficult to separate from
+biology.
+This has a concrete implication for the project’s next stage. Because the age–complexity link
+is at least partly intrinsic and replicates across assays, simply assembling a larger multi-dataset
+cohort will not, on its own, remove it; a harmonised cohort would need to model or condition on
+transcript complexity explicitly rather than balancing donor counts alone. The negative result is,
+in this sense, a positive constraint on how the modelling should proceed.
+References
+[1] Roux, A.E., et al. Diverse partial reprogramming strategies restore youthful gene expression
+and transiently suppress cell identity.Cell Systems13(7), 574–587 (2022).
+[2] Theodoris, C.V., et al. Transfer learning enables predictions in network biology.Nature618,
+616–624 (2023).
+5

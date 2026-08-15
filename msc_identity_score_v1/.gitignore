@@ -1,0 +1,25 @@
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Build and packaging outputs
+build/
+dist/
+*.egg-info/
+
+# Large or restricted input data
+data/
+*.h5ad
+
+# Generated analysis outputs
+outputs/
+*.parquet
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

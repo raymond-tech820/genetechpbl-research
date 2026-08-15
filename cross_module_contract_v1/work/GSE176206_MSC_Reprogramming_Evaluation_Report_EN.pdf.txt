@@ -1,0 +1,829 @@
+
+
+===== PAGE 1 =====
+GENETECH PBL PROJECT
+Integrated Youth-Identity-Cycle
+Evaluation of Partial Reprogramming
+in GSE176206 MSCs
+Methods, Results, and Interpretation Boundaries
+Central conclusion
+Across the three aged mice with known animal identifiers, SOKM treatment reduced the Youth Score,
+MSC identity, and ECM/collagen programs. At the same time, source-provided annotations showed
+a major redistribution from baseline/Col11a1-high states toward reprogramming and reprogramming-
+cycling states. T wo independent cell-cycle scoring methods disagreed in direction; therefore, the
+data do not support a robust global increase in cell-cycle activity . The integrated classification is
+state_remodeling_dominant: the negative Youth Scoreshift is better explained by strong remod-
+eling of cell identity and state composition than by the simple statement that “the cells became older.”
+Dataset GSE176206 MSC SOKM single-cell RNA-seq
+Analysis version Reprogramming Evaluation v1
+Report date 30 July 2026
+Primary statistical unit Mouse/animal (cells are the measurement layer)
+Report language English
+This is a transcriptomic research report. It does not establish clinical safety, tumourigenicity, therapeutic eﬀicacy, or
+causal rejuvenation.
+
+===== PAGE 2 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+Contents
+Abstract 1
+1 Research Question and Analytical Framework 1
+2 Data and Methods 2
+3 Results 5
+4 Discussion 14
+5 Limitations and Actionable Next Steps 14
+6 Conclusion 15
+A Reproducibility Information 15
+B Frozen MSC Identity-Core Genes 16
+C Frozen Canonical Pluripotency-Marker Genes 17
+D References 17
+i
+
+===== PAGE 3 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+Abstract
+Objective: To explain why a frozen Youth Score model trained on cleaned TMS FACS Limb Muscle MSCs
+assigns lower scores to aged SOKM cells in the external GSE176206 MSC dataset, and to distinguish natural-
+age signals from MSC identity loss, cell-cycle changes, and reprogramming-associated state transitions.
+Methods: The analysis used raw cell-by-gene counts from GSE176206 (20,661 cells and 28,694 genes)
+without refitting the Youth Scoremodel on the external data. Counts were total-count normalized to 10,000 per
+cell and log(1+x) transformed for module scoring. MSC identity, ECM/collagen, E2F, G2M, reprogramming,
+SenMayo, p53, and DNA-repair modules were frozen before effect inspection. Each module was evaluated
+by two methods: (1) an expression-matched, 100-control-set background-corrected module score; and (2) a
+within-cell expression-rank score. An axis was called robust only when both methods agreed in direction.
+Three mice with known animal identifiers formed the paired inferential unit. Cells with unknown animal
+identifiers were retained only for descriptive sensitivity analysis.
+Results: Among aged known animals, the donor-paired median-cell effects for SOKM − control were:
+Youth Score−0.1786; MSC identity −0.0809 by the primary method and−0.1408 by rank; and ECM −0.2161
+by the primary method and −0.1539 by rank. The baseline/Col11a1-high state fraction decreased by 0.6573,
+whereas reprogramming and reprogramming-cycling increased by 0.5728 and 0.1732, respectively; ordinary
+cycling decreased by 0.0887. The combined cell-cycle axis increased by +0.0412 under the primary method
+but decreased by −0.0196 under the rank method. Mean-cell decomposition of the Youth Score shift yielded
+a shared-state within component of −0.0522, a shared-state composition component of −0.2395, and a non-
+overlap residual of +0.1432.
+Conclusion: The best-supported interpretation is that SOKM causes substantial cell-state remodeling and
+loss of MSC/ECM identity together with a negativeYouth Scoreshift. The evidence does not support a uniform
+increase in proliferation across the entire cell population, nor can the lower score be interpreted directly as
+accelerated aging. Because only three paired mice were available, all intervals and permutation results are
+descriptive.
+Three boundaries for reading this report
+• The Youth Score measures similarity to the TMS young Limb MSC transcriptional state; it is not
+developmental time or true biological age.
+• Velocity pseudotime is a source-provided trajectory coordinate; it is neither experimental time nor
+longitudinal tracking of the same cell.
+• Risk modules provide transcriptomic context and are not direct measurements of tumour formation,
+toxicity, or clinical safety.
+1 Research Question and Analytical Framework
+1.1 Research question
+In the external validation dataset, aged MSCs had a lower Youth Score after SOKM treatment than their
+matched controls. This observation has at least three distinct possible explanations:
+1. cells moved along a natural aging direction;
+2. cells moved away from a “young MSC” identity even if that deviation was not equivalent to aging; or
+3. the population composition changed, for example because many cells entered reprogramming or
+reprogramming-cycling states, shifting the population transcriptome away from the young MSC
+reference.
+Accordingly, this report does not treat the Youth Score as a stand-alone answer. It jointly examines the
+1
+
+===== PAGE 4 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+Youth Score, MSC identity, ECM/collagen, E2F/G2M cell-cycle activity, canonical endogenous pluripotency
+markers, source-provided cell states, velocity pseudotime, and three contextual risk axes.
+1.2 Pre-specified interpretation logic
+Core principle: cells are the measurement layer; mice are the inference layer
+Scores are calculated for individual cells and then summarized within each mouse and condition. The
+formal treatment effect is the within-mouse SOKM − control contrast. The 20,661 cells are not treated
+as 20,661 independent biological replicates.
+The integrated result is not compressed into a single continuous score that claims to represent “safety.”
+Instead, it uses the following pre-specified categories:
+Table 1: Integrated interpretation categories and their meanings.
+Category Pre-specified pattern
+rejuvenation_supported Youth Score increases, identity/ECM does not robustly decrease, and no con-
+textual risk axis robustly increases.
+state_remodeling_
+dominant
+Youth Score decreases together with identity/ECM loss and a shift toward re-
+programming states, but no risk axis robustly increases.
+adverse_like_
+transcriptional_pattern
+Youth Score decreases, identity/ECM is lost, and at least one risk axis in-
+creases under both scoring methods.
+mixed_or_inconclusive None of the preceding joint patterns is satisfied.
+2 Data and Methods
+2.1 Dataset and analytical sample
+The input was the GSE176206 MSC single-cell dataset: data/external/GSE176206/GSE176206_
+msc_sokm.h5ad. The expression matrix was read from layers/counts, and gene symbols were read
+from var/gene_name. Treatment labels were frozen as follows: Tg+/Dox+ was mapped to SOKM;
+Tg+/Dox-, Tg-/Dox+, and NegCtrl were mapped to control.
+Table 2 : Cells included in the analysis. Known indicates a valid animal identifier;
+unknown cells do not enter paired inference.
+Age group Treatment Known cells Unknown cells Total
+Aged Control 2,012 860 2,872
+Aged SOKM 8,181 216 8,397
+Y oung Control 1,682 730 2,412
+Y oung SOKM 6,811 169 6,980
+Total 18,686 1,975 20,661
+The known subset contained animals 1, 2, and 3. All four age-by-treatment conditions contained three
+mice, but cell counts differed substantially between animals. The primary analysis therefore used equal mouse
+weights rather than pooling all cells.
+2
+
+===== PAGE 5 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+2.2 Frozen gene modules
+All gene modules were frozen before inspection of the treatment effects. No genes were reselected from
+GSE176206 or TMS on the basis of highly variable genes, differential expression, or treatment response.
+This avoided double-dipping in which the same dataset would be used both to select and to evaluate features.
+Mitochondrial, ribosomal, haemoglobin, and pre-specified housekeeping/noise genes were excluded from the
+background pool.
+Table 3: Frozen modules, sources, and coverage in the present dataset. The coverage
+threshold was pre-specified at 70%.
+Module Primary source and purpose Expected Observed Coverage
+MSC identity core Mouse MSC literature markers; re-
+tention of MSC-like identity
+11 11 100.0%
+ECM/collagen Mouse MSigDB GO; matrix and
+collagen organization
+114 111 97.4%
+E2F targets Mouse MSigDB Hallmark; prolifera-
+tion/E2F activity
+199 192 96.5%
+G2M checkpoint Mouse MSigDB Hallmark; G2/M
+activity
+194 182 93.8%
+Canonical pluripotency markers Pre-recorded endogenous mouse
+markers from Roux et al.
+13 13 100.0%
+p53 response Mouse MSigDB Hallmark; p53 re-
+sponse
+196 189 96.4%
+DNA repair Mouse MSigDB Hallmark; DNA-
+repair response
+148 143 96.6%
+SenMayo/SASP Mouse MSigDB SenMayo; senes-
+cence/SASP
+116 115 99.1%
+/uni00000013 /uni00000015/uni00000013/uni00000017/uni00000013/uni00000019/uni00000013/uni0000001b/uni00000013/uni00000014/uni00000013/uni00000013
+/uni0000002a/uni00000048/uni00000051/uni00000048/uni00000003/uni00000046/uni00000052/uni00000059/uni00000048/uni00000055/uni00000044/uni0000004a/uni00000048/uni00000003/uni0000000b/uni00000008/uni0000000c
+/uni0000002a/uni00000015/uni00000030/uni00000003/uni00000046/uni0000004b/uni00000048/uni00000046/uni0000004e/uni00000053/uni00000052/uni0000004c/uni00000051/uni00000057
+/uni00000053/uni00000018/uni00000016/uni00000003/uni00000055/uni00000048/uni00000056/uni00000053/uni00000052/uni00000051/uni00000056/uni00000048
+/uni00000028/uni00000015/uni00000029/uni00000003/uni00000057/uni00000044/uni00000055/uni0000004a/uni00000048/uni00000057/uni00000056
+/uni00000027/uni00000031/uni00000024/uni00000003/uni00000055/uni00000048/uni00000053/uni00000044/uni0000004c/uni00000055
+/uni00000028/uni00000026/uni00000030/uni00000012/uni00000046/uni00000052/uni0000004f/uni0000004f/uni00000044/uni0000004a/uni00000048/uni00000051
+/uni00000036/uni00000048/uni00000051/uni00000030/uni00000044/uni0000005c/uni00000052/uni00000012/uni00000036/uni00000024/uni00000036/uni00000033
+/uni00000030/uni00000036/uni00000026/uni00000003/uni0000004c/uni00000047/uni00000048/uni00000051/uni00000057/uni0000004c/uni00000057/uni0000005c
+/uni00000026/uni00000044/uni00000051/uni00000052/uni00000051/uni0000004c/uni00000046/uni00000044/uni0000004f/uni00000003/uni00000053/uni0000004f/uni00000058/uni00000055/uni0000004c/uni00000053/uni00000052/uni00000057/uni00000048/uni00000051/uni00000046/uni0000005c/uni00000003/uni00000050/uni00000044/uni00000055/uni0000004e/uni00000048/uni00000055/uni00000056
+/uni00000014/uni0000001b/uni00000015/uni00000012/uni00000014/uni0000001c/uni00000017
+/uni00000014/uni0000001b/uni0000001c/uni00000012/uni00000014/uni0000001c/uni00000019
+/uni00000014/uni0000001c/uni00000015/uni00000012/uni00000014/uni0000001c/uni0000001c
+/uni00000014/uni00000017/uni00000016/uni00000012/uni00000014/uni00000017/uni0000001b
+/uni00000014/uni00000014/uni00000014/uni00000012/uni00000014/uni00000014/uni00000017
+/uni00000014/uni00000014/uni00000018/uni00000012/uni00000014/uni00000014/uni00000019
+/uni00000014/uni00000014/uni00000012/uni00000014/uni00000014
+/uni00000014/uni00000016/uni00000012/uni00000014/uni00000016
+/uni00000029/uni00000055/uni00000052/uni0000005d/uni00000048/uni00000051/uni00000003/uni00000050/uni00000052/uni00000047/uni00000058/uni0000004f/uni00000048/uni00000003/uni00000046/uni00000052/uni00000059/uni00000048/uni00000055/uni00000044/uni0000004a/uni00000048/uni00000003/uni0000004c/uni00000051/uni00000003/uni0000002a/uni00000036/uni00000028/uni00000014/uni0000001a/uni00000019/uni00000015/uni00000013/uni00000019/uni00000003/uni00000030/uni00000036/uni00000026
+Figure 1: Coverage of frozen gene modules in the GSE176206 MSC expression matrix.
+Every module exceeded the pre-specified 70% interpretation threshold; therefore, no
+module was rejected because of inadequate coverage.
+3
+
+===== PAGE 6 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+2.3 Expression preprocessing
+For raw count Cig for cell i and gene g, the analysis calculated:
+Xig = log
+(
+1 + 10,000 Cig∑
+h Cih
+)
+. (1)
+This transformation was used only for the module scores in this report. The frozenYouth Scoreretained its own
+model-specific preprocessing; the external dataset was not used for refitting, feature selection, or probability
+calibration.
+2.4 T wo module-scoring algorithms
+2.4.1 Primary method: expression-matched background correction
+For module k, let G+
+k and G−
+k denote the positive- and negative-direction gene sets. The directed target-module
+expression was:
+Mik = 1
+|G+
+k |
+∑
+g∈G+
+k
+Xig − 1
+|G−
+k |
+∑
+g∈G−
+k
+Xig. (2)
+Each target gene was assigned to one of 24 expression bins using its mean expression in known-animal control
+cells. Expression-matched background genes were sampled from the same bins to produce B = 100 control
+modules. The primary score was:
+Sprimary
+ik = Mik − 1
+B
+B∑
+b=1
+M (b)
+ik . (3)
+The base random seed was fixed at 20260729, with deterministic module-specific sub-seeds defined by module
+order.
+2.4.2 Sensitivity method: within-cell rank score
+Expression percentiles rig were calculated among non-zero genes in each cell, using the same frozen direc-
+tions:
+Srank
+ik = 1
+|G+
+k | + |G−
+k |
+
+
+∑
+g∈G+
+k
+rig −
+∑
+g∈G−
+k
+rig
+
+ . (4)
+The rank method is less sensitive to library size and cross-platform expression scale, but its numerical scale is
+not directly comparable with the primary score. A change is described as robust only when the two methods
+agree in direction.
+2.4.3 Combined cell-cycle axis
+E2F and G2M were scored independently and then averaged:
+S(m)
+i,cycle =
+S(m)
+i,E2F + S(m)
+i,G2M
+2 , m ∈ {primary, rank}. (5)
+This score represents transcriptional cell-cycle program activity, not a directly measured cell-division rate.
+2.5 Donor-level summaries and statistics
+For known cells, the median, mean, and 95th percentile were calculated within each mouse and condition.
+The primary contrast within each aged mouse was:
+∆dk = Rdk,SOKM − Rdk,control, (6)
+4
+
+===== PAGE 7 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+after which the three mice received equal weight. Intervals used 2,000 paired bootstrap draws. The exact
+two-sided sign-flip test enumerated all 23 possible sign assignments.
+Statistical power limitation
+With n = 3 , the minimum non-zero two-sided exact sign-flip p-value is 0.25. Confidence intervals and
+p-values in this report therefore describe directional consistency and uncertainty; they do not establish
+conventional statistical significance.
+2.6 Unknown cells, cell states, and trajectory analyses
+Unknown-cell sensitivity. Cells with unknown animal identifiers cannot be paired with controls and do
+not increase the donor count. The workflow separately reports known-donor paired, known-cell-weighted,
+unknown-cell-weighted, and all-cell-weighted effects to test whether unknown cells dominate the direction.
+State mapping. Exact source-provided state annotations were retained, and four broad categories were cre-
+ated for composition analysis:
+• baseline_or_col11a1: Dox+ baseline, Tg+ baseline, and Col11a1 high;
+• cycling: the ordinary cycling state;
+• reprogramming: reprogramming and reprogramming intermediate;
+• reprogramming_cycling: states annotated as both reprogramming and cycling.
+The baseline/Col11a1 grouping is a broad analytical category and does not automatically mean “normal” or
+“healthy.”
+Y outh-change decomposition. For states s observed in both control and SOKM, let pcs denote the state
+fraction and µcs the mean Youth Scorewithin that state. A symmetric decomposition was calculated separately
+for each mouse:
+∆within =
+∑
+s
+p1s + p0s
+2 (µ1s − µ0s), (7)
+∆composition =
+∑
+s
+µ1s + µ0s
+2 (p1s − p0s), (8)
+∆nonoverlap = ∆ observed − ∆within − ∆composition. (9)
+This decomposition uses the mean-cell scale and is therefore numerically different from the donor-median
+effect in the primary analysis.
+Velocity pseudotime. The analysis used the source-provided velocity_pseudotime, divided it into
+five bins, and calculated Spearman correlations. This coordinate describes cell position along a trajectory
+inferred in the source study; it is not chronological time and does not longitudinally track the same cell. Pooled-
+cell results are descriptive, and within-animal correlations are reported separately.
+3 Results
+5
+
+===== PAGE 8 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+3.1 Primary paired results: Youth, identity, and ECM decrease together
+/uni00000026/uni00000052/uni00000051/uni00000057/uni00000055/uni00000052/uni0000004f/uni00000036/uni00000032/uni0000002e/uni00000030
+/uni00000013/uni00000011/uni00000016/uni00000013
+/uni00000013/uni00000011/uni00000016/uni00000018
+/uni00000013/uni00000011/uni00000017/uni00000013
+/uni00000013/uni00000011/uni00000017/uni00000018
+/uni00000013/uni00000011/uni00000018/uni00000013
+/uni00000013/uni00000011/uni00000018/uni00000018
+/uni0000003c/uni00000052/uni00000058/uni00000057/uni0000004b/uni00000003/uni00000036/uni00000046/uni00000052/uni00000055/uni00000048
+/uni00000026/uni00000052/uni00000051/uni00000057/uni00000055/uni00000052/uni0000004f/uni00000036/uni00000032/uni0000002e/uni00000030
+/uni00000013/uni00000011/uni00000014/uni00000015/uni00000018
+/uni00000013/uni00000011/uni00000014/uni00000018/uni00000013
+/uni00000013/uni00000011/uni00000014/uni0000001a/uni00000018
+/uni00000013/uni00000011/uni00000015/uni00000013/uni00000013
+/uni00000013/uni00000011/uni00000015/uni00000015/uni00000018
+/uni00000013/uni00000011/uni00000015/uni00000018/uni00000013
+/uni00000013/uni00000011/uni00000015/uni0000001a/uni00000018
+/uni00000030/uni00000036/uni00000026/uni00000003/uni0000004c/uni00000047/uni00000048/uni00000051/uni00000057/uni0000004c/uni00000057/uni0000005c
+/uni00000026/uni00000052/uni00000051/uni00000057/uni00000055/uni00000052/uni0000004f/uni00000036/uni00000032/uni0000002e/uni00000030
+/uni00000013/uni00000011/uni00000014/uni00000018
+/uni00000013/uni00000011/uni00000014/uni00000013
+/uni00000013/uni00000011/uni00000013/uni00000018
+/uni00000013/uni00000011/uni00000013/uni00000013
+/uni00000013/uni00000011/uni00000013/uni00000018
+/uni00000013/uni00000011/uni00000014/uni00000013
+/uni00000013/uni00000011/uni00000014/uni00000018
+/uni00000028/uni00000026/uni00000030/uni00000012/uni00000046/uni00000052/uni0000004f/uni0000004f/uni00000044/uni0000004a/uni00000048/uni00000051
+/uni00000026/uni00000052/uni00000051/uni00000057/uni00000055/uni00000052/uni0000004f/uni00000036/uni00000032/uni0000002e/uni00000030
+/uni00000013/uni00000011/uni00000013/uni00000017
+/uni00000013/uni00000011/uni00000013/uni00000015
+/uni00000013/uni00000011/uni00000013/uni00000013
+/uni00000013/uni00000011/uni00000013/uni00000015
+/uni00000028/uni00000015/uni00000029/uni00000003/uni00000057/uni00000044/uni00000055/uni0000004a/uni00000048/uni00000057/uni00000056
+/uni00000026/uni00000052/uni00000051/uni00000057/uni00000055/uni00000052/uni0000004f/uni00000036/uni00000032/uni0000002e/uni00000030
+/uni00000013/uni00000011/uni00000013/uni00000017
+/uni00000013/uni00000011/uni00000013/uni00000016
+/uni00000013/uni00000011/uni00000013/uni00000015
+/uni00000013/uni00000011/uni00000013/uni00000014
+/uni00000013/uni00000011/uni00000013/uni00000013
+/uni0000002a/uni00000015/uni00000030/uni00000003/uni00000046/uni0000004b/uni00000048/uni00000046/uni0000004e/uni00000053/uni00000052/uni0000004c/uni00000051/uni00000057
+/uni00000026/uni00000052/uni00000051/uni00000057/uni00000055/uni00000052/uni0000004f/uni00000036/uni00000032/uni0000002e/uni00000030
+/uni00000013/uni00000011/uni00000013/uni00000017
+/uni00000013/uni00000011/uni00000013/uni00000016
+/uni00000013/uni00000011/uni00000013/uni00000015
+/uni00000013/uni00000011/uni00000013/uni00000014
+/uni00000026/uni00000044/uni00000051/uni00000052/uni00000051/uni0000004c/uni00000046/uni00000044/uni0000004f/uni00000003/uni00000053/uni0000004f/uni00000058/uni00000055/uni0000004c/uni00000053/uni00000052/uni00000057/uni00000048/uni00000051/uni00000046/uni0000005c
+/uni00000050/uni00000044/uni00000055/uni0000004e/uni00000048/uni00000055/uni00000056
+/uni00000033/uni00000044/uni0000004c/uni00000055/uni00000048/uni00000047/uni00000003/uni00000044/uni00000051/uni0000004c/uni00000050/uni00000044/uni0000004f/uni00000010/uni0000004f/uni00000048/uni00000059/uni00000048/uni0000004f/uni00000003/uni00000055/uni00000048/uni00000056/uni00000053/uni00000052/uni00000051/uni00000056/uni00000048/uni00000003/uni0000000b/uni00000050/uni00000048/uni00000047/uni0000004c/uni00000044/uni00000051/uni00000003/uni00000046/uni00000048/uni0000004f/uni0000004f/uni00000003/uni00000056/uni00000046/uni00000052/uni00000055/uni00000048/uni0000001e/uni00000003/uni00000051/uni00000003/uni00000020/uni00000003/uni00000016/uni00000003/uni00000053/uni00000048/uni00000055/uni00000003/uni00000044/uni0000004a/uni00000048/uni0000000c
+/uni0000003c/uni00000052/uni00000058/uni00000051/uni0000004a/uni00000024/uni0000004a/uni00000048/uni00000047
+Figure 2: Paired control and SOKM scores in mice with known animal identifiers. Each
+line connects the same mouse. Green denotes young mice and red denotes aged mice.
+The figure should be read as directional agreement across three mice per age group,
+not as evidence from independent cells. The sixth panel is the continuous canonical
+endogenous pluripotency-marker module, not the fraction of cells annotated as repro-
+gramming.
+The Youth Score decreased in all three aged mice. The donor-paired median-cell effect was −0.1786, with a
+bootstrap 95% interval of[−0.2270, −0.1112]. MSC identity and ECM/collagen decreased under both scoring
+algorithms, making their directions comparatively robust.
+Table 4: Core paired median-cell effects in aged mice (SOKM − control).
+Metric Primary Rank Interpretation
+Youth Score −0.1786 All three mice changed in the same direc-
+tion; the external rejuvenation direction
+was not supported.
+MSC identity −0.0809 −0.1408 Both methods decreased, supporting iden-
+tity loss.
+ECM/collagen −0.2161 −0.1539 Both methods decreased, supporting
+ECM-program loss.
+Cell-cycle activity +0.0412 −0.0196 Opposite directions; no robust global
+activation.
+Canonical pluripotency markers −0.0295 −0.0477 Both methods decreased; this endoge-
+nous module is not interchangeable with
+source state labels.
+SenMayo/SASP −0.1150 −0.0945 Both methods decreased; no increase in
+this module.
+p53 response +0.0143 −0.0573 Method-sensitive direction.
+DNA repair +0.0456 −0.0395 Method-sensitive direction.
+6
+
+===== PAGE 9 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+Why can reprogramming states increase while canonical pluripotency markers decrease?
+The state labels are discrete annotations supplied by the GSE176206 authors and describe which transcrip-
+tomic state a cell occupies. The frozen marker module is a continuous score derived from 13 canonical
+endogenous mouse pluripotency genes. In the h5ad file, the exogenous four-factor construct is repre-
+sented separately as Y4TF; the module features Pou5f1, Sox2, Klf4 , and Myc are endogenous genes
+rather than transgene measurements. Consequently, SOKM can redistribute cells into source-labeled
+reprogramming states without increasing this endogenous marker module. These measurements have
+different definitions and neither can substitute for the other.
+The E2F and G2M panels in Figure 2 show the primary background-corrected module scores and rise in
+the aged paired comparison. However, the combined cell-cycle rank score changes slightly in the opposite di-
+rection. The increase is therefore treated as method-sensitive and may reflect enrichment of a reprogramming-
+cycling subpopulation rather than uniform cell-cycle activation across all MSCs.
+3.2 Cell-state composition undergoes major redistribution
+/uni0000003c/uni00000052/uni00000058/uni00000051/uni0000004a
+/uni00000046/uni00000052/uni00000051/uni00000057/uni00000055/uni00000052/uni0000004f
+/uni0000003c/uni00000052/uni00000058/uni00000051/uni0000004a
+/uni00000036/uni00000032/uni0000002e/uni00000030
+/uni00000024/uni0000004a/uni00000048/uni00000047
+/uni00000046/uni00000052/uni00000051/uni00000057/uni00000055/uni00000052/uni0000004f
+/uni00000024/uni0000004a/uni00000048/uni00000047
+/uni00000036/uni00000032/uni0000002e/uni00000030
+/uni00000013/uni00000011/uni00000013
+/uni00000013/uni00000011/uni00000015
+/uni00000013/uni00000011/uni00000017
+/uni00000013/uni00000011/uni00000019
+/uni00000013/uni00000011/uni0000001b
+/uni00000014/uni00000011/uni00000013/uni00000026/uni00000048/uni0000004f/uni0000004f/uni00000010/uni00000056/uni00000057/uni00000044/uni00000057/uni00000048/uni00000003/uni00000049/uni00000055/uni00000044/uni00000046/uni00000057/uni0000004c/uni00000052/uni00000051
+/uni0000002e/uni00000051/uni00000052/uni0000005a/uni00000051/uni00000003/uni00000044/uni00000051/uni0000004c/uni00000050/uni00000044/uni0000004f/uni00000056/uni00000003/uni0000000b/uni00000048/uni00000054/uni00000058/uni00000044/uni0000004f/uni00000003/uni0000005a/uni00000048/uni0000004c/uni0000004a/uni0000004b/uni00000057/uni0000000c
+/uni0000003c/uni00000052/uni00000058/uni00000051/uni0000004a
+/uni00000046/uni00000052/uni00000051/uni00000057/uni00000055/uni00000052/uni0000004f
+/uni0000003c/uni00000052/uni00000058/uni00000051/uni0000004a
+/uni00000036/uni00000032/uni0000002e/uni00000030
+/uni00000024/uni0000004a/uni00000048/uni00000047
+/uni00000046/uni00000052/uni00000051/uni00000057/uni00000055/uni00000052/uni0000004f
+/uni00000024/uni0000004a/uni00000048/uni00000047
+/uni00000036/uni00000032/uni0000002e/uni00000030
+/uni00000024/uni0000004f/uni0000004f/uni00000003/uni00000046/uni00000048/uni0000004f/uni0000004f/uni00000056/uni00000003/uni0000000b/uni00000046/uni00000048/uni0000004f/uni0000004f/uni00000010/uni0000005a/uni00000048/uni0000004c/uni0000004a/uni0000004b/uni00000057/uni00000048/uni00000047/uni0000000c
+/uni0000002a/uni00000036/uni00000028/uni00000010/uni00000053/uni00000055/uni00000052/uni00000059/uni0000004c/uni00000047/uni00000048/uni00000047/uni00000003/uni00000046/uni00000048/uni0000004f/uni0000004f/uni00000010/uni00000056/uni00000057/uni00000044/uni00000057/uni00000048/uni00000003/uni00000046/uni00000052/uni00000050/uni00000053/uni00000052/uni00000056/uni0000004c/uni00000057/uni0000004c/uni00000052/uni00000051
+/uni00000025/uni00000044/uni00000056/uni00000048/uni0000004f/uni0000004c/uni00000051/uni00000048/uni00000003/uni00000012/uni00000003/uni00000026/uni00000052/uni0000004f/uni00000014/uni00000014/uni00000044/uni00000014/uni00000010/uni0000004b/uni0000004c/uni0000004a/uni0000004b
+/uni00000026/uni0000005c/uni00000046/uni0000004f/uni0000004c/uni00000051/uni0000004a
+/uni00000035/uni00000048/uni00000053/uni00000055/uni00000052/uni0000004a/uni00000055/uni00000044/uni00000050/uni00000050/uni0000004c/uni00000051/uni0000004a/uni00000010/uni00000046/uni0000005c/uni00000046/uni0000004f/uni0000004c/uni00000051/uni0000004a
+/uni00000035/uni00000048/uni00000053/uni00000055/uni00000052/uni0000004a/uni00000055/uni00000044/uni00000050/uni00000050/uni0000004c/uni00000051/uni0000004a
+/uni00000032/uni00000057/uni0000004b/uni00000048/uni00000055
+Figure 3 : Broad composition of the source-provided GSE176206 state annotations.
+Known-animal fractions were calculated within each mouse and then averaged with
+equal mouse weight. The all-cell panel is cell-weighted and therefore influenced by un-
+equal cell counts across animals.
+Among aged mice, paired state-fraction changes for SOKM relative to control were:
+Table 5: State-fraction changes in aged mice (SOKM − control); values are proportion-
+point changes.
+Broad state Effect 95% bootstrap interval Direction
+Baseline/Col11a1-high −0.6573 [ −0.6911, −0.5997] Large decrease
+Ordinary cycling −0.0887 [ −0.1171, −0.0608] Decrease
+Reprogramming +0.5728 [+0 .4973, +0.6701] Large increase
+Reprogramming-cycling +0.1732 [+0 .1091, +0.2195] Increase
+The net change in cycling-associated states was approximately +0.1732 − 0.0887 = +0 .0845, but this
+increase came from the reprogramming-cycling state, whereas ordinary cycling decreased. Together with
+the disagreement between continuous cell-cycle module methods, this pattern supports expansion of a specific
+reprogramming-proliferation substate, not uniformly increased division across the entire cell population.
+7
+
+===== PAGE 10 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+3.3 Unknown cells do not add donor evidence and expose identity sensitivity
+/uni0000002e/uni00000051/uni00000052/uni0000005a/uni00000051/uni00000003/uni00000047/uni00000052/uni00000051/uni00000052/uni00000055/uni00000056
+/uni0000000b/uni00000048/uni00000054/uni00000058/uni00000044/uni0000004f/uni00000003/uni00000047/uni00000052/uni00000051/uni00000052/uni00000055/uni00000003/uni0000005a/uni00000048/uni0000004c/uni0000004a/uni0000004b/uni00000057/uni0000000c
+/uni00000038/uni00000051/uni0000004e/uni00000051/uni00000052/uni0000005a/uni00000051/uni00000003/uni00000046/uni00000048/uni0000004f/uni0000004f/uni00000056
+/uni0000000b/uni00000047/uni00000048/uni00000056/uni00000046/uni00000055/uni0000004c/uni00000053/uni00000057/uni0000004c/uni00000059/uni00000048/uni0000000c
+/uni00000024/uni0000004f/uni0000004f/uni00000003/uni00000046/uni00000048/uni0000004f/uni0000004f/uni00000056
+/uni0000000b/uni00000047/uni00000048/uni00000056/uni00000046/uni00000055/uni0000004c/uni00000053/uni00000057/uni0000004c/uni00000059/uni00000048/uni0000000c
+/uni0000003c/uni00000052/uni00000058/uni00000057/uni0000004b/uni00000003/uni00000036/uni00000046/uni00000052/uni00000055/uni00000048
+/uni00000030/uni00000036/uni00000026/uni00000003/uni0000004c/uni00000047/uni00000048/uni00000051/uni00000057/uni0000004c/uni00000057/uni0000005c
+/uni00000028/uni00000026/uni00000030/uni00000012/uni00000046/uni00000052/uni0000004f/uni0000004f/uni00000044/uni0000004a/uni00000048/uni00000051
+/uni00000026/uni00000048/uni0000004f/uni0000004f/uni00000010/uni00000046/uni0000005c/uni00000046/uni0000004f/uni00000048/uni00000003/uni00000044/uni00000046/uni00000057/uni0000004c/uni00000059/uni0000004c/uni00000057/uni0000005c
+/uni00000026/uni00000044/uni00000051/uni00000052/uni00000051/uni0000004c/uni00000046/uni00000044/uni0000004f/uni00000003/uni00000053/uni0000004f/uni00000058/uni00000055/uni0000004c/uni00000053/uni00000052/uni00000057/uni00000048/uni00000051/uni00000046/uni0000005c/uni00000003/uni00000050/uni00000044/uni00000055/uni0000004e/uni00000048/uni00000055/uni00000056
+/uni00000036/uni00000048/uni00000051/uni00000030/uni00000044/uni0000005c/uni00000052/uni00000012/uni00000036/uni00000024/uni00000036/uni00000033
+/uni00000053/uni00000018/uni00000016/uni00000003/uni00000055/uni00000048/uni00000056/uni00000053/uni00000052/uni00000051/uni00000056/uni00000048
+/uni00000027/uni00000031/uni00000024/uni00000003/uni00000055/uni00000048/uni00000053/uni00000044/uni0000004c/uni00000055
+/uni00000010/uni00000013/uni00000011/uni00000014/uni0000001a/uni0000001c/uni00000010/uni00000013/uni00000011/uni00000015/uni00000014/uni0000001b/uni00000010/uni00000013/uni00000011/uni00000015/uni00000017/uni00000014
+/uni00000010/uni00000013/uni00000011/uni00000013/uni0000001b/uni00000014/uni0000000e/uni00000013/uni00000011/uni00000013/uni00000013/uni00000013/uni00000018/uni00000010/uni00000013/uni00000011/uni00000013/uni0000001a/uni0000001b
+/uni00000010/uni00000013/uni00000011/uni00000015/uni00000014/uni00000019/uni00000010/uni00000013/uni00000011/uni00000014/uni0000001c/uni00000018/uni00000010/uni00000013/uni00000011/uni00000015/uni00000016/uni00000019
+/uni0000000e/uni00000013/uni00000011/uni00000013/uni00000017/uni00000014/uni0000000e/uni00000013/uni00000011/uni00000013/uni00000014/uni00000019/uni0000000e/uni00000013/uni00000011/uni00000013/uni00000017/uni00000015
+/uni00000010/uni00000013/uni00000011/uni00000013/uni00000016/uni00000013/uni00000010/uni00000013/uni00000011/uni00000013/uni00000016/uni00000018/uni00000010/uni00000013/uni00000011/uni00000013/uni00000016/uni00000019
+/uni00000010/uni00000013/uni00000011/uni00000014/uni00000014/uni00000018/uni00000010/uni00000013/uni00000011/uni00000013/uni0000001c/uni00000018/uni00000010/uni00000013/uni00000011/uni00000014/uni00000015/uni00000013
+/uni0000000e/uni00000013/uni00000011/uni00000013/uni00000014/uni00000017/uni0000000e/uni00000013/uni00000011/uni00000013/uni00000016/uni00000018/uni0000000e/uni00000013/uni00000011/uni00000013/uni00000016/uni00000014
+/uni0000000e/uni00000013/uni00000011/uni00000013/uni00000017/uni00000019/uni0000000e/uni00000013/uni00000011/uni00000013/uni00000017/uni00000014/uni0000000e/uni00000013/uni00000011/uni00000013/uni00000018/uni00000016
+/uni00000024/uni0000004a/uni00000048/uni00000047/uni00000003/uni00000030/uni00000036/uni00000026/uni00000003/uni00000048/uni00000049/uni00000049/uni00000048/uni00000046/uni00000057/uni00000003/uni00000056/uni00000048/uni00000051/uni00000056/uni0000004c/uni00000057/uni0000004c/uni00000059/uni0000004c/uni00000057/uni0000005c/uni00000003/uni00000057/uni00000052/uni00000003/uni00000058/uni00000051/uni0000004e/uni00000051/uni00000052/uni0000005a/uni00000051/uni00000010/uni00000044/uni00000051/uni0000004c/uni00000050/uni00000044/uni0000004f/uni00000003/uni0000004c/uni00000051/uni00000046/uni0000004f/uni00000058/uni00000056/uni0000004c/uni00000052/uni00000051
+/uni00000013/uni00000011/uni00000015
+/uni00000013/uni00000011/uni00000014
+/uni00000013/uni00000011/uni00000013
+/uni00000013/uni00000011/uni00000014
+/uni00000013/uni00000011/uni00000015
+/uni00000036/uni00000032/uni0000002e/uni00000030/uni00000003/uni00000010/uni00000003/uni00000046/uni00000052/uni00000051/uni00000057/uni00000055/uni00000052/uni0000004f
+Figure 4: Sensitivity of aged-cell effects to the inclusion of cells with unknown animal
+identifiers. The known-donor paired estimate is the primary result; the unknown-cell
+and all-cell columns are cell-weighted descriptive analyses.
+Table 6: Core aged-group effects under different inclusion rules.
+Metric Known donor Known cells Unknown cells All cells
+Youth Score −0.1786 −0.2337 −0.2177 −0.2405
+MSC identity, primary −0.0809 −0.0933 +0.0005 −0.0780
+ECM, primary −0.2161 −0.2417 −0.1950 −0.2358
+Cell-cycle, primary +0.0412 +0 .0471 +0.0160 +0 .0417
+The Youth Score and ECM effects retained the same direction among unknown cells, whereas the primary
+MSC-identity effect was nearly zero. Unknown cells therefore did not alter the broad conclusions of lower
+Youth Score and weaker ECM, but they reduced the cross-subset stability of the primary identity result. This
+is why the integrated assessment recorded known_unknown_direction_agreement=false.
+8
+
+===== PAGE 11 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+3.4 Youth and ECM can change within the same annotated state
+/uni0000003c/uni00000052/uni00000058/uni00000057/uni0000004b/uni00000003/uni00000036/uni00000046/uni00000052/uni00000055/uni00000048/uni00000030/uni00000036/uni00000026/uni00000003/uni0000004c/uni00000047/uni00000048/uni00000051/uni00000057/uni0000004c/uni00000057/uni0000005c/uni00000028/uni00000026/uni00000030/uni00000012/uni00000046/uni00000052/uni0000004f/uni0000004f/uni00000044/uni0000004a/uni00000048/uni00000051/uni00000026/uni00000048/uni0000004f/uni0000004f/uni00000010/uni00000046/uni0000005c/uni00000046/uni0000004f/uni00000048/uni00000003/uni00000044/uni00000046/uni00000057/uni0000004c/uni00000059/uni0000004c/uni00000057/uni0000005c
+/uni00000026/uni00000052/uni0000004f/uni00000014/uni00000014/uni00000044/uni00000014/uni00000003/uni0000004b/uni0000004c/uni0000004a/uni0000004b/uni00000003/uni0000000b/uni00000051/uni00000020/uni00000016/uni0000000c
+/uni00000027/uni00000052/uni0000005b/uni0000000e/uni00000003/uni00000045/uni00000044/uni00000056/uni00000048/uni0000004f/uni0000004c/uni00000051/uni00000048/uni00000003/uni0000000b/uni00000051/uni00000020/uni00000016/uni0000000c
+/uni00000037/uni0000004a/uni0000000e/uni00000003/uni00000045/uni00000044/uni00000056/uni00000048/uni0000004f/uni0000004c/uni00000051/uni00000048/uni00000003/uni0000000b/uni00000051/uni00000020/uni00000015/uni0000000c
+/uni00000046/uni0000005c/uni00000046/uni0000004f/uni0000004c/uni00000051/uni0000004a/uni00000003/uni0000000b/uni00000051/uni00000020/uni00000016/uni0000000c
+/uni00000055/uni00000048/uni00000053/uni00000055/uni00000052/uni0000004a/uni00000055/uni00000044/uni00000050/uni00000050/uni0000004c/uni00000051/uni0000004a/uni00000003/uni0000004c/uni00000051/uni00000057/uni00000048/uni00000055/uni00000050/uni00000048/uni00000047/uni0000004c/uni00000044/uni00000057/uni00000048/uni00000003/uni0000000b/uni00000051/uni00000020/uni00000014/uni0000000c
+/uni00000010/uni00000013/uni00000011/uni00000013/uni0000001b/uni00000019/uni00000013/uni00000011/uni00000013/uni00000013/uni00000017/uni00000010/uni00000013/uni00000011/uni00000014/uni0000001c/uni00000016/uni00000013/uni00000011/uni00000013/uni00000016/uni00000017
+/uni00000010/uni00000013/uni00000011/uni00000013/uni00000015/uni00000013/uni00000010/uni00000013/uni00000011/uni00000013/uni00000014/uni00000013/uni00000010/uni00000013/uni00000011/uni00000013/uni00000013/uni00000015/uni00000013/uni00000011/uni00000013/uni00000013/uni0000001a
+/uni00000010/uni00000013/uni00000011/uni00000015/uni00000016/uni00000018/uni00000010/uni00000013/uni00000011/uni00000013/uni00000015/uni0000001c/uni00000010/uni00000013/uni00000011/uni00000013/uni00000019/uni00000016/uni00000013/uni00000011/uni00000013/uni00000014/uni00000013
+/uni00000010/uni00000013/uni00000011/uni00000013/uni00000013/uni00000018/uni00000010/uni00000013/uni00000011/uni00000013/uni00000017/uni00000013/uni00000013/uni00000011/uni00000013/uni00000014/uni00000014/uni00000010/uni00000013/uni00000011/uni00000013/uni00000015/uni00000017
+/uni00000013/uni00000011/uni00000013/uni00000018/uni00000016/uni00000010/uni00000013/uni00000011/uni00000013/uni00000016/uni00000018/uni00000010/uni00000013/uni00000011/uni00000013/uni00000017/uni0000001a/uni00000010/uni00000013/uni00000011/uni00000013/uni00000015/uni0000001c
+/uni00000024/uni0000004a/uni00000048/uni00000047/uni00000003/uni00000030/uni00000036/uni00000026/uni00000003/uni0000005a/uni0000004c/uni00000057/uni0000004b/uni0000004c/uni00000051/uni00000010/uni00000056/uni00000057/uni00000044/uni00000057/uni00000048/uni00000003/uni00000053/uni00000044/uni0000004c/uni00000055/uni00000048/uni00000047/uni00000003/uni00000048/uni00000049/uni00000049/uni00000048/uni00000046/uni00000057/uni00000056
+/uni00000013/uni00000011/uni00000015
+/uni00000013/uni00000011/uni00000014
+/uni00000013/uni00000011/uni00000013
+/uni00000013/uni00000011/uni00000014
+/uni00000013/uni00000011/uni00000015
+/uni00000030/uni00000048/uni00000044/uni00000051/uni00000003/uni00000053/uni00000044/uni0000004c/uni00000055/uni00000048/uni00000047/uni00000003
+Figure 5: Paired comparisons within exact source-provided states that occurred in both
+control and SOKM for the same mouse. Values show within-state changes and cannot
+represent states that occurred in only one condition. The n in each row is the number
+of paired mice, not the number of cells.
+Within the Col11a1-high state, the mean paired Youth Score change was approximately −0.0860, and the
+primary ECM score changed by approximately −0.1926. Within the Dox+ baseline state, the Youth Score
+changed by approximately −0.0201. Thus, the total effect was not produced solely by different state propor-
+tions; transcriptomic remodeling also occurred within some shared states. However, only seven SOKM cells
+were annotated as Tg+ baseline, and the paired reprogramming-intermediate state was also extremely sparse.
+These states should not be interpreted in isolation.
+9
+
+===== PAGE 12 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+/uni00000013/uni00000011/uni00000014/uni00000015/uni00000013/uni00000011/uni00000014/uni00000017/uni00000013/uni00000011/uni00000014/uni00000019/uni00000013/uni00000011/uni00000014/uni0000001b/uni00000013/uni00000011/uni00000015/uni00000013/uni00000013/uni00000011/uni00000015/uni00000015/uni00000013/uni00000011/uni00000015/uni00000017/uni00000013/uni00000011/uni00000015/uni00000019/uni00000013/uni00000011/uni00000015/uni0000001b
+/uni00000030/uni00000036/uni00000026/uni00000003/uni0000004c/uni00000047/uni00000048/uni00000051/uni00000057/uni0000004c/uni00000057/uni0000005c/uni00000003/uni00000050/uni00000052/uni00000047/uni00000058/uni0000004f/uni00000048/uni00000003/uni0000000b/uni00000050/uni00000048/uni00000047/uni0000004c/uni00000044/uni00000051/uni0000000c
+/uni00000013/uni00000011/uni00000016/uni00000013
+/uni00000013/uni00000011/uni00000016/uni00000018
+/uni00000013/uni00000011/uni00000017/uni00000013
+/uni00000013/uni00000011/uni00000017/uni00000018
+/uni00000013/uni00000011/uni00000018/uni00000013
+/uni00000013/uni00000011/uni00000018/uni00000018/uni0000003c/uni00000052/uni00000058/uni00000057/uni0000004b/uni00000003/uni00000036/uni00000046/uni00000052/uni00000055/uni00000048/uni00000003/uni0000000b/uni00000050/uni00000048/uni00000047/uni0000004c/uni00000044/uni00000051/uni0000000c
+/uni0000002d/uni00000052/uni0000004c/uni00000051/uni00000057/uni00000003/uni0000003c/uni00000052/uni00000058/uni00000057/uni0000004b/uni0000002c/uni00000047/uni00000048/uni00000051/uni00000057/uni0000004c/uni00000057/uni0000005c/uni00000003/uni00000055/uni00000048/uni00000056/uni00000053/uni00000052/uni00000051/uni00000056/uni00000048
+/uni00000056/uni00000054/uni00000058/uni00000044/uni00000055/uni00000048/uni00000003/uni00000056/uni0000004c/uni0000005d/uni00000048/uni00000003/uni00000055/uni00000048/uni00000049/uni0000004f/uni00000048/uni00000046/uni00000057/uni00000056/uni00000003/uni00000046/uni00000048/uni0000004f/uni0000004f/uni00000010/uni00000046/uni0000005c/uni00000046/uni0000004f/uni00000048/uni00000003/uni00000046/uni0000004b/uni00000044/uni00000051/uni0000004a/uni00000048
+/uni0000003c/uni00000052/uni00000058/uni00000051/uni0000004a
+/uni00000024/uni0000004a/uni00000048/uni00000047
+/uni00000026/uni00000052/uni00000051/uni00000057/uni00000055/uni00000052/uni0000004f
+/uni00000036/uni00000032/uni0000002e/uni00000030
+Figure 6: Joint donor-level movement in Youth Score and MSC identity. Circles rep-
+resent control, squares represent SOKM, and arrows connect the same mouse. Green
+denotes young and red denotes aged animals. Square size encodes the absolute magni-
+tude, not the direction, of the paired cell-cycle-score change.
+10
+
+===== PAGE 13 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+3.5 The Youth decrease contains both within-state and composition components
+/uni00000014 /uni00000015 /uni00000016 /uni00000030/uni00000048/uni00000044/uni00000051
+/uni00000024/uni0000004a/uni00000048/uni00000047/uni00000003/uni00000044/uni00000051/uni0000004c/uni00000050/uni00000044/uni0000004f
+/uni00000013/uni00000011/uni00000017
+/uni00000013/uni00000011/uni00000016
+/uni00000013/uni00000011/uni00000015
+/uni00000013/uni00000011/uni00000014
+/uni00000013/uni00000011/uni00000013
+/uni00000013/uni00000011/uni00000014
+/uni00000013/uni00000011/uni00000015
+/uni0000003c/uni00000052/uni00000058/uni00000057/uni0000004b/uni00000003/uni00000036/uni00000046/uni00000052/uni00000055/uni00000048/uni00000003/uni00000050/uni00000048/uni00000044/uni00000051/uni00000010/uni00000046/uni00000048/uni0000004f/uni0000004f/uni00000003
+/uni00000024/uni0000004a/uni00000048/uni00000047/uni00000003/uni0000003c/uni00000052/uni00000058/uni00000057/uni0000004b/uni00000003/uni00000036/uni00000046/uni00000052/uni00000055/uni00000048/uni00000003/uni00000047/uni00000048/uni00000046/uni00000052/uni00000050/uni00000053/uni00000052/uni00000056/uni0000004c/uni00000057/uni0000004c/uni00000052/uni00000051/uni00000003/uni0000000b/uni00000036/uni00000032/uni0000002e/uni00000030/uni00000003/uni00000010/uni00000003/uni00000046/uni00000052/uni00000051/uni00000057/uni00000055/uni00000052/uni0000004f/uni0000000c
+/uni00000032/uni00000045/uni00000056/uni00000048/uni00000055/uni00000059/uni00000048/uni00000047/uni00000003
+/uni0000003a/uni0000004c/uni00000057/uni0000004b/uni0000004c/uni00000051/uni00000003/uni00000056/uni0000004b/uni00000044/uni00000055/uni00000048/uni00000047/uni00000003/uni00000056/uni00000057/uni00000044/uni00000057/uni00000048/uni00000056
+/uni00000036/uni0000004b/uni00000044/uni00000055/uni00000048/uni00000047/uni00000010/uni00000056/uni00000057/uni00000044/uni00000057/uni00000048/uni00000003/uni00000046/uni00000052/uni00000050/uni00000053/uni00000052/uni00000056/uni0000004c/uni00000057/uni0000004c/uni00000052/uni00000051
+/uni00000031/uni00000052/uni00000051/uni00000010/uni00000052/uni00000059/uni00000048/uni00000055/uni0000004f/uni00000044/uni00000053/uni00000003/uni00000055/uni00000048/uni00000056/uni0000004c/uni00000047/uni00000058/uni00000044/uni0000004f
+Figure 7 : Mean-cell decomposition of the Youth Score change. Each bar and black
+diamond represents a mouse-level decomposition; the final column is the equal-mouse
+average. The primary donor-median effect and this mean-cell decomposition estimate
+different summaries and are therefore not numerically identical.
+Table 7: Average mean-cell Youth Score decomposition across aged mice.
+Component Mean change
+Observed total −0.1486
+Shared-state within component −0.0522
+Shared-state composition component −0.2395
+Non-overlap residual +0.1432
+The shared-state composition component was the largest negative term, supporting a state-redistribution-
+dominant interpretation. The within-state component was also negative, demonstrating that the result was
+not solely a change in proportions. The positive non-overlap residual indicated that the net contribution of
+states not shared across conditions offset part of the negative terms. Because signed components can cancel,
+they must not be interpreted as simple percentage contributions.
+11
+
+===== PAGE 14 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+3.6 Velocity pseudotime is a trajectory coordinate, not chronological age
+/uni00000013/uni00000011/uni00000015/uni00000013/uni00000011/uni00000017/uni00000013/uni00000011/uni00000019/uni00000013/uni00000011/uni0000001b
+/uni00000039/uni00000048/uni0000004f/uni00000052/uni00000046/uni0000004c/uni00000057/uni0000005c/uni00000003/uni00000053/uni00000056/uni00000048/uni00000058/uni00000047/uni00000052/uni00000057/uni0000004c/uni00000050/uni00000048
+/uni00000013/uni00000011/uni00000015
+/uni00000013/uni00000011/uni00000016
+/uni00000013/uni00000011/uni00000017
+/uni00000013/uni00000011/uni00000018/uni00000030/uni00000048/uni00000047/uni0000004c/uni00000044/uni00000051/uni00000003/uni00000046/uni00000048/uni0000004f/uni0000004f/uni00000003/uni00000056/uni00000046/uni00000052/uni00000055/uni00000048
+/uni0000003c/uni00000052/uni00000058/uni00000057/uni0000004b/uni00000003/uni00000036/uni00000046/uni00000052/uni00000055/uni00000048
+/uni00000013/uni00000011/uni00000015/uni00000013/uni00000011/uni00000017/uni00000013/uni00000011/uni00000019/uni00000013/uni00000011/uni0000001b
+/uni00000039/uni00000048/uni0000004f/uni00000052/uni00000046/uni0000004c/uni00000057/uni0000005c/uni00000003/uni00000053/uni00000056/uni00000048/uni00000058/uni00000047/uni00000052/uni00000057/uni0000004c/uni00000050/uni00000048
+/uni00000013/uni00000011/uni00000014
+/uni00000013/uni00000011/uni00000013
+/uni00000013/uni00000011/uni00000014
+/uni00000013/uni00000011/uni00000015
+/uni00000013/uni00000011/uni00000016
+/uni00000030/uni00000036/uni00000026/uni00000003/uni0000004c/uni00000047/uni00000048/uni00000051/uni00000057/uni0000004c/uni00000057/uni0000005c
+/uni00000013/uni00000011/uni00000015/uni00000013/uni00000011/uni00000017/uni00000013/uni00000011/uni00000019/uni00000013/uni00000011/uni0000001b
+/uni00000039/uni00000048/uni0000004f/uni00000052/uni00000046/uni0000004c/uni00000057/uni0000005c/uni00000003/uni00000053/uni00000056/uni00000048/uni00000058/uni00000047/uni00000052/uni00000057/uni0000004c/uni00000050/uni00000048
+/uni00000013/uni00000011/uni00000014
+/uni00000013/uni00000011/uni00000013
+/uni00000013/uni00000011/uni00000014
+/uni00000013/uni00000011/uni00000015
+/uni00000026/uni00000048/uni0000004f/uni0000004f/uni00000010/uni00000046/uni0000005c/uni00000046/uni0000004f/uni00000048/uni00000003/uni00000044/uni00000046/uni00000057/uni0000004c/uni00000059/uni0000004c/uni00000057/uni0000005c
+/uni0000004e/uni00000051/uni00000052/uni0000005a/uni00000051/uni00000003/uni00000046/uni00000048/uni0000004f/uni0000004f/uni00000056
+/uni00000058/uni00000051/uni0000004e/uni00000051/uni00000052/uni0000005a/uni00000051/uni00000003/uni00000046/uni00000048/uni0000004f/uni0000004f/uni00000056
+/uni00000024/uni0000004a/uni00000048/uni00000047/uni00000003/uni00000036/uni00000032/uni0000002e/uni00000030/uni00000003/uni00000057/uni00000055/uni00000044/uni0000004d/uni00000048/uni00000046/uni00000057/uni00000052/uni00000055/uni0000005c/uni00000003/uni00000056/uni00000048/uni00000051/uni00000056/uni0000004c/uni00000057/uni0000004c/uni00000059/uni0000004c/uni00000057/uni0000005c
+Figure 8: Descriptive relationships between source-provided velocity pseudotime and
+cell scores in aged SOKM cells. Each point is the median score in a pseudotime bin; the
+lines do not track the same cells through time. Green denotes cells with known animal
+identifiers and purple denotes cells with unknown animal identifiers.
+Among aged SOKM cells with known animal identifiers, pooled-cell Spearman correlations were:
+Table 8: Correlations between velocity pseudotime and scores in aged SOKM cells.
+Metric Spearman ρ
+Youth Score +0.6903
+MSC identity, primary +0.4875
+ECM/collagen, primary +0.9201
+Cell-cycle activity, primary −0.6468
+Canonical pluripotency-marker module, primary +0.4640
+Within-animal Youth Scorecorrelations for the three mice were approximately0.6914, 0.6570, and 0.5246,
+respectively, although their cell counts were highly unequal. A positive correlation does not mean that a cell
+became younger as real time passed. It may reflect coordinate orientation, state composition, partial recovery
+of identity/ECM in baseline-like regions, or other properties of the source trajectory. In the local data, low
+pseudotime was enriched for reprogramming-cycling and reprogramming states, whereas high pseudotime was
+dominated by Dox+ baseline cells. This result is best treated as a hypothesis for source-level velocity-graph
+and state-specific trajectory analysis, not as a stand-alone causal conclusion.
+12
+
+===== PAGE 15 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+3.7 Contextual risk axes and integrated effects
+/uni00000033/uni00000055/uni0000004c/uni00000050/uni00000044/uni00000055/uni0000005c/uni00000035/uni00000044/uni00000051/uni0000004e/uni0000003c/uni00000052/uni00000058/uni00000057/uni0000004b/uni00000003/uni00000050/uni00000052/uni00000047/uni00000048/uni0000004f
+/uni0000003c/uni00000052/uni00000058/uni00000057/uni0000004b/uni00000003/uni00000036/uni00000046/uni00000052/uni00000055/uni00000048
+/uni00000030/uni00000036/uni00000026/uni00000003/uni0000004c/uni00000047/uni00000048/uni00000051/uni00000057/uni0000004c/uni00000057/uni0000005c
+/uni00000028/uni00000026/uni00000030/uni00000012/uni00000046/uni00000052/uni0000004f/uni0000004f/uni00000044/uni0000004a/uni00000048/uni00000051
+/uni00000026/uni00000048/uni0000004f/uni0000004f/uni00000010/uni00000046/uni0000005c/uni00000046/uni0000004f/uni00000048/uni00000003/uni00000044/uni00000046/uni00000057/uni0000004c/uni00000059/uni0000004c/uni00000057/uni0000005c
+/uni00000026/uni00000044/uni00000051/uni00000052/uni00000051/uni0000004c/uni00000046/uni00000044/uni0000004f/uni00000003/uni00000053/uni0000004f/uni00000058/uni00000055/uni0000004c/uni00000053/uni00000052/uni00000057/uni00000048/uni00000051/uni00000046/uni0000005c/uni00000003/uni00000050/uni00000044/uni00000055/uni0000004e/uni00000048/uni00000055/uni00000056
+/uni00000036/uni00000048/uni00000051/uni00000030/uni00000044/uni0000005c/uni00000052/uni00000012/uni00000036/uni00000024/uni00000036/uni00000033
+/uni00000053/uni00000018/uni00000016/uni00000003/uni00000055/uni00000048/uni00000056/uni00000053/uni00000052/uni00000051/uni00000056/uni00000048
+/uni00000027/uni00000031/uni00000024/uni00000003/uni00000055/uni00000048/uni00000053/uni00000044/uni0000004c/uni00000055
+/uni00000010/uni00000013/uni00000011/uni00000014/uni0000001a/uni0000001c
+/uni00000010/uni00000013/uni00000011/uni00000013/uni0000001b/uni00000014/uni00000010/uni00000013/uni00000011/uni00000014/uni00000017/uni00000014
+/uni00000010/uni00000013/uni00000011/uni00000015/uni00000014/uni00000019/uni00000010/uni00000013/uni00000011/uni00000014/uni00000018/uni00000017
+/uni00000013/uni00000011/uni00000013/uni00000017/uni00000014/uni00000010/uni00000013/uni00000011/uni00000013/uni00000015/uni00000013
+/uni00000010/uni00000013/uni00000011/uni00000013/uni00000016/uni00000013/uni00000010/uni00000013/uni00000011/uni00000013/uni00000017/uni0000001b
+/uni00000010/uni00000013/uni00000011/uni00000014/uni00000014/uni00000018/uni00000010/uni00000013/uni00000011/uni00000013/uni0000001c/uni00000018
+/uni00000013/uni00000011/uni00000013/uni00000014/uni00000017/uni00000010/uni00000013/uni00000011/uni00000013/uni00000018/uni0000001a
+/uni00000013/uni00000011/uni00000013/uni00000017/uni00000019/uni00000010/uni00000013/uni00000011/uni00000013/uni00000016/uni0000001c
+/uni00000024/uni0000004a/uni00000048/uni00000047/uni00000003/uni00000053/uni00000044/uni0000004c/uni00000055/uni00000048/uni00000047/uni00000003/uni00000048/uni00000049/uni00000049/uni00000048/uni00000046/uni00000057/uni00000003/uni00000053/uni00000055/uni00000052/uni00000049/uni0000004c/uni0000004f/uni00000048
+/uni00000046/uni00000052/uni00000050/uni00000053/uni00000044/uni00000055/uni00000048/uni00000003/uni00000056/uni0000004c/uni0000004a/uni00000051/uni00000056/uni00000003/uni00000044/uni00000046/uni00000055/uni00000052/uni00000056/uni00000056/uni00000003/uni00000050/uni00000048/uni00000057/uni0000004b/uni00000052/uni00000047/uni00000056/uni0000001e/uni00000003/uni00000050/uni00000044/uni0000004a/uni00000051/uni0000004c/uni00000057/uni00000058/uni00000047/uni00000048/uni00000056/uni00000003/uni00000044/uni00000055/uni00000048/uni00000003/uni00000050/uni00000048/uni00000057/uni0000004b/uni00000052/uni00000047/uni00000010/uni00000056/uni00000053/uni00000048/uni00000046/uni0000004c/uni00000049/uni0000004c/uni00000046
+Figure 9: Integrated effects across the principal modules and contextual risk axes. Pri-
+mary and rank scores use different numerical scales; the figure is intended for compari-
+son of direction, not direct comparison of magnitudes.
+After linking the frozen Risk v1.1 outputs as contextual evidence, identity-loss risk increased under both
+methods (approximately +0.0817 and +0.0467); inflammation/SASP risk decreased under both methods; and
+abnormal-proliferation/DDR risk increased by +0.0554 under the primary method but changed by −0.0047
+under the rank method. The p53 and DNA-repair modules likewise disagreed in direction across methods.
+The workflow therefore did not identify a pattern in which at least one contextual risk axis robustly increased
+under both methods.
+13
+
+===== PAGE 16 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+Integrated classification
+state_remodeling_dominant
+The Youth Score decreased; MSC identity and ECM decreased under both scoring methods;
+baseline/Col11a1-high states became less abundant; and reprogramming and reprogramming-cycling
+states became more abundant. Cell-cycle and several risk-related modules were method-sensitive. This
+pattern supports dominant reprogramming-associated state remodeling and does not support simplify-
+ing the result to “stable rejuvenation,” “accelerated aging,” or “demonstrated safety/harm.”
+4 Discussion
+4.1 Best-supported biological interpretation
+This analysis converted the proposed hypothesis that identity loss may obscure age-related signals into an
+auditable quantitative test. Three lines of evidence were mutually consistent:
+1. Continuous scores: the Youth Score, MSC identity, and ECM/collagen decreased together;
+2. Discrete states: baseline/Col11a1-high states decreased substantially while reprogramming and
+reprogramming-cycling states increased; and
+3. Decomposition: shared-state composition was the largest negative component of the Youth Score shift,
+with an additional negative within-state component.
+The negative Youth Score shift therefore arose at least partly because cells moved away from the “young
+Limb MSC” transcriptional state learned by the model. The score may respond not only to age-related expres-
+sion but also to MSC identity, ECM, culture state, and reprogramming-induced changes orthogonal to natural
+aging. The Youth Score alone cannot fully separate these mechanisms.
+4.2 Why the data do not support robust global cell-cycle activation
+State fractions showed an increase in reprogramming-cycling but a decrease in ordinary cycling. The primary
+continuous module score showed a small increase, whereas the rank score showed a small decrease. Expansion
+of a specific subpopulationand increased average cell-cycle activity acrossall cells are distinct questions. The
+most accurate current statement is:
+SOKM increased the fraction of the reprogramming-cycling substate, but two independent con-
+tinuous scoring methods did not agree on the direction of global cell-cycle activity. Robust
+population-wide cell-cycle activation is therefore not supported.
+4.3 Relationship to Roux et al.
+Roux et al. reported that partial-reprogramming effects are strongly dependent on cell identity. In muscle-
+derived MSCs, dedifferentiation, cell-cycle programs, and other orthogonal remodeling can dominate changes
+along the natural age axis. The present results are directionally consistent with that interpretation. However,
+this analysis uses an independently frozen TMS Youth Score, literature/MSigDB modules, donor-paired statis-
+tics, and known/unknown sensitivity analysis. It is therefore an independent quantification of the proposed
+mechanism rather than a restatement of the source paper.
+5 Limitations and Actionable Next Steps
+14
+
+===== PAGE 17 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+5.1 Principal limitations
+1. Few donors: each age-by-condition group contained only three mice; all inferential results are descrip-
+tive.
+2. Unequal cell counts: animal 1 contributed most aged SOKM cells. Equal mouse weighting reduces but
+cannot eliminate this limitation.
+3. Unknown cells cannot be paired: the 1,975 unknown cells are useful for descriptive sensitivity analysis
+but do not add biological replicates.
+4. Modules are proxies: identity, cell cycle, SASP , p53, and DNA repair are transcriptional proxies rather
+than direct functional measurements.
+5. Method sensitivity: primary and rank methods disagreed for cell cycle, p53, and DNA repair; one
+method cannot be selected post hoc as the sole conclusion.
+6. States and pseudotime are source-derived: they are not experimental lineage tracing and do not estab-
+lish the true destination of any individual cell.
+7. Domain limitation of the Youth Score: the model was trained on TMS FACS Limb MSCs and may
+respond jointly to age, identity, and assay/domain shift.
+5.2 Priority next steps
+1. Evaluate joint Y outh-identity-cycle trajectories separately within each mouse and exact source state to
+avoid pooled-cell dominance.
+2. Recheck the root, terminal state, and direction of the source velocity graph before assigning biological
+direction to pseudotime.
+3. Replicate identity/ECM and composition findings in additional independent MSC reprogramming
+datasets or a cohort with more donors.
+4. Validate the reprogramming-cycling fraction against EdU/Ki67, direct cell counts, or another functional
+proliferation measurement.
+5. Retain both primary and rank methods. If they disagree, report the result as method-sensitive rather than
+selecting a method post hoc.
+6 Conclusion
+Under the frozen scoring framework and the current GSE176206 MSC dataset, aged SOKM cells did not move
+toward the young Limb MSC state defined by TMS. More importantly, the negativeYouth Scoreshift coincided
+with reduced MSC identity and ECM/collagen programs and with redistribution from baseline/Col11a1-high
+states toward reprogramming and reprogramming-cycling states. The joint pattern identifiesreprogramming-
+associated identity and state remodeling as the primary interpretation .
+The present results do not support robust global cell-cycle activation and do not provide evidence suﬀi-
+cient to interpret the transcriptomic changes as clinical safety, tumourigenicity, or accelerated aging. The
+main achievement is a reproducible, donor-aware framework with explicit method-sensitivity controls. It ex-
+plains why the Youth Score decreases while making clear that additional independent donors and functional
+experiments are required to confirm mechanism.
+A Reproducibility Information
+15
+
+===== PAGE 18 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+A.1 Execution command
+$env:PYTHONPATH = "D:\Genetech Project\src"
+.\.venv\Scripts\python.exe -m reprogramming_evaluation.cli run `
+--config configs\reprogramming_evaluation_v1.yaml `
+--force
+Principal configuration:
+• target sum: 10,000;
+• minimum gene coverage: 0.70;
+• control sets: 100;
+• expression bins: 24;
+• random seed: 20260729;
+• chunk size: 1,024; and
+• bootstrap draws: 2,000.
+A.2 Principal machine-readable outputs
+File Contents
+cell_scores.parquet Cell metadata, Youth Score, module scores, and linked Risk
+outputs.
+known_donor_scores.csv Median, mean, and 95th-percentile scores for each mouse
+and condition.
+known_donor_paired_
+contrasts.csv
+Within-mouse SOKM − control effects.
+known_unknown_sensitivity.
+csv
+Known-, unknown-, and all-cell sensitivity results.
+state_fraction_paired_
+contrasts.csv
+Paired changes in source-provided state fractions.
+within_state_paired_deltas.
+csv
+Paired score changes within shared states.
+composition_decomposition.
+csv
+Within-state, composition, and non-overlap decomposition.
+pseudotime_correlations.csv Pooled-cell and within-animal Spearman correlations.
+integrated_assessment.json Machine-readable integrated classification under pre-
+specified rules.
+B Frozen MSC Identity-Core Genes
+The present version includes 11 mouse MSC/stromal identity markers: Cd34, Cd44, Cxcl12, Eng, Itgav, Lepr,
+Ly6a, Nt5e, Pdgfra, Prrx1, Thy1. The source, version, rationale, inclusion status, and exclusion reason for each
+gene are recorded in: data/reference/reprogramming_evaluation/v1/reprogramming_
+gene_set_v1.csv.
+16
+
+===== PAGE 19 =====
+GSE176206 MSC Reprogramming Evaluation Methods, Results, and Interpretation
+C Frozen Canonical Pluripotency-Marker Genes
+The module displayed in Figure 2 includes 13 endogenous mouse genes: Dppa2, Esrrb, Klf2, Klf4, Lin28a,
+Myc, Nanog, Pou5f1, Sall4, Sox2, Tet1, Utf1, Zfp42. It is a targeted expression module, not a classifier for the
+source-provided reprogramming states and not a direct readout of the Y4TF transgene construct.
+D References
+References
+[1] Roux A., Zhang C., Paw J., et al. Diverse partial reprogramming strategies restore youthful gene expres-
+sion and transiently suppress cell identity. Cell Systems, 2022. https://doi.org/10.1016/j.
+cels.2022.05.002
+[2] NCBI Gene Expression Omnibus. GSE176206: partial reprogramming in mouse adipogenic cells and
+MSCs. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE176206
+[3] Molecular Signatures Database (MSigDB), Mouse Collections, release 2026.1.Mm. https://www.
+gsea-msigdb.org/gsea/msigdb/mouse/collections.jsp
+[4] Saul D., Kosinsky R. L., Atkinson E. J., et al. A new gene set identifies senescent cells and predicts
+senescence-associated pathways across tissues. Nature Communications, 2022. https://doi.org/
+10.1038/s41467-022-32552-1
+[5] Morikawa S., Mabuchi Y ., Kubota Y ., et al. Prospective identification, isolation, and systemic transplanta-
+tion of multipotent mesenchymal stem cells in murine bone marrow. https://pubmed.ncbi.nlm.
+nih.gov/19995920/
+[6] Greenbaum A., Hsu Y .-M. S., Day R. B., et al. CXCL12 in early mesenchymal progenitors and the
+hematopoietic niche. https://pmc.ncbi.nlm.nih.gov/articles/PMC3600148/
+End of report – generated from frozen inputs and versioned outputs in
+outputs/reprogramming_evaluation/v1/gse176206_msc.
+17

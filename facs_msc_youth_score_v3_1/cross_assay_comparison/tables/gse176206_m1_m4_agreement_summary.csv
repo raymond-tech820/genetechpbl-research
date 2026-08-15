@@ -1,0 +1,8 @@
+"scope","stratum","n","spearman"
+"overall","all",18,0.929824561403509
+"within_age","Aged",9,0.966666666666667
+"within_age","Young",9,0.916666666666667
+"within_treatment","Tg+/Dox+",6,1
+"within_treatment","Tg+/Dox-",6,0.771428571428571
+"within_treatment","Tg-/Dox+",6,1
+"age_treatment_residualized","all",18,0.907120743034056

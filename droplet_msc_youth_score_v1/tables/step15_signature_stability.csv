@@ -1,0 +1,4 @@
+"version","median_jaccard_all","median_jaccard_young_module","median_jaccard_old_module","min_jaccard_all","full_signature_size","full_signature_genes_in_at_least_75pct_outer_folds","full_signature_fraction_in_at_least_75pct_outer_folds","median_outer_fold_inclusion_frequency_for_full_signature"
+"Small",0.509433962264151,0.50997150997151,0.428571428571429,0.142857142857143,40,25,0.625,0.75
+"Medium",0.544424567680381,0.5625,0.538461538461538,0.162790697674419,100,70,0.7,0.833333333333333
+"Large",0.584164627642888,0.6,0.574803149606299,0.223241590214067,200,148,0.74,0.833333333333333

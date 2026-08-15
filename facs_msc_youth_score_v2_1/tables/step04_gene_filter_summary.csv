@@ -1,0 +1,5 @@
+"metric","value"
+"raw_genes",22966
+"genes_retained_cpm_gt_1_in_at_least_2_mice",12824
+"genes_removed",10142
+"pca_gene_count",2000

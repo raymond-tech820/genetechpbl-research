@@ -1,0 +1,8 @@
+check,value,passed
+R parser pseudobulk validation rows,14,True
+R parser min gene coverage,1.0,True
+R parser min weighted coverage,1.0,True
+Python h5ad wrapper validation rows,14,True
+Python h5ad wrapper min gene coverage,1.0,True
+Python h5ad wrapper min weighted coverage,1.0,True
+R vs Python max abs calibrated score difference,1.9984014443252818e-15,True

@@ -1,0 +1,22 @@
+name: genetech-gf
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.10
+  - pip
+  - scanpy
+  - anndata
+  - pandas
+  - numpy
+  - pyarrow          # datasets/tokenizer output
+  - git-lfs
+  - pip:
+      - pybiomart
+      - datasets
+      - transformers<5   # 5.x removes SpecialTokensMixin, breaks Geneformer
+      # torch: install matched to your CUDA, e.g.
+      #   pip install torch --index-url https://download.pytorch.org/whl/cu118
+      #   verified working: torch 2.7.1+cu118
+      # Geneformer installs separately from its HF repo, see README
+      #   verified working: commit 04c2b2e

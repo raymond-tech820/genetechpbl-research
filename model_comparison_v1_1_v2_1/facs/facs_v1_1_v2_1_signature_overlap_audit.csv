@@ -1,0 +1,4 @@
+module,v1_fold_union_genes,v1_freq_ge_0_6_genes,v2_genes,overlap_v1_union_v2_same_module,jaccard_v1_union_v2_same_module,overlap_v1_freq_ge_0_6_v2_same_module
+young_high,83,45,50,0,0.0,0
+old_high,77,48,50,6,0.049586776859504134,6
+any_module,160,93,100,6,0.023622047244094488,6

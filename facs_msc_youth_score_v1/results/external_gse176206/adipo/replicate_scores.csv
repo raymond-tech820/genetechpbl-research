@@ -1,0 +1,5 @@
+external_age_group,external_treatment,external_replicate,youth_score,cells
+aged,SOKM,Adipose_Aged_Tg+,0.43599236,8878
+aged,control,Adipose_Aged_Tg-,0.44691756,7322
+young,SOKM,Adipose_Young_Tg+,0.42646512,8113
+young,control,Adipose_Young_Tg-,0.49667057,7689

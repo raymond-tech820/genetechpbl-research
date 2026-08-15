@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+.venv/
+data/external/
+data/tms_compact/
+data/extracted/
+data/processed/

@@ -1,0 +1,8 @@
+check,value
+n_overlap_donors,12.0
+max_abs_score_diff_overlap,5.210008313660808e-09
+spearman_local_vs_packaged_overlap,1.0
+local_cells,9649.0
+packaged_sensitivity_cells,13037.0
+local_donors,12.0
+packaged_sensitivity_donors,16.0

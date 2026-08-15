@@ -1,0 +1,4 @@
+"sample","model","young_module_score","old_module_score","raw_score","calibrated_score","raw_library_size","gene_coverage","weighted_coverage","young_high_weighted_coverage","old_high_weighted_coverage","coverage_pass"
+"synthetic_young_like","M4_raw_all_gene_denominator_pi_0_90",9.11790801451027,6.77187684296917,2.3460311715411,1.29854343375302,53957,1,1,1,1,TRUE
+"synthetic_mid","M4_raw_all_gene_denominator_pi_0_90",8.26705039332868,7.72415655400666,0.54289383932202,0.63126843765924,51482,1,1,1,1,TRUE
+"synthetic_old_like","M4_raw_all_gene_denominator_pi_0_90",7.33987259652091,8.58792521875256,-1.24805262223165,-0.0314951643048267,52922,1,1,1,1,TRUE

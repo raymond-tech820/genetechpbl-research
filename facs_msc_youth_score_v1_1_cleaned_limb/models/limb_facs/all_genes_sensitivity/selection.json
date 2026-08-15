@@ -1,0 +1,77 @@
+{
+  "config": {
+    "dataset": {
+      "cell_type": "mesenchymal stem cell",
+      "dataset_id": "limb_facs",
+      "excluded_subtissues": [
+        "Muscle Diaphragm"
+      ],
+      "expected_cells": 815,
+      "expected_old_cells": 551,
+      "expected_old_mice": 8,
+      "expected_young_cells": 264,
+      "expected_young_mice": 6,
+      "expression_bins": 64,
+      "feature_count": 4096,
+      "folds": 5,
+      "minimum_detected_genes": 500,
+      "modality": "facs",
+      "model": {
+        "age_loss_weight": 0.25,
+        "d_model": 128,
+        "dropout": 0.2,
+        "feedforward": 512,
+        "heads": 8,
+        "layers": 2,
+        "token_dropout": 0.15
+      },
+      "old_ages": [
+        "18m",
+        "24m"
+      ],
+      "path": "D:\\Genetech Project\\configs\\limb_secondary.yaml",
+      "project_root": "D:\\Genetech Project",
+      "role": "secondary",
+      "seeds": [
+        20260717,
+        20260718,
+        20260719
+      ],
+      "sensitivity_ages": [],
+      "sequence_length": 256,
+      "tissue": "Limb_Muscle",
+      "training": {
+        "batch_size": 64,
+        "gradient_clip": 1.0,
+        "learning_rate": 0.0003,
+        "max_epochs": 80,
+        "num_workers": 0,
+        "patience": 12,
+        "weight_decay": 0.01
+      },
+      "young_ages": [
+        "3m"
+      ]
+    }
+  },
+  "created_at": "2026-07-24T01:11:10.202894+00:00",
+  "dataset_id": "limb_facs",
+  "feature_mode": "all",
+  "official_model": "gene_signature",
+  "runtime": {
+    "cuda_available": true,
+    "cuda_version": "13.0",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "platform": "win32",
+    "python": "3.12.13 (main, Mar  3 2026, 15:01:35) [MSC v.1944 64 bit (AMD64)]",
+    "torch": "2.13.0+cu130"
+  },
+  "selection_rule": "Highest donor OOF ROC-AUC; within 0.02 use lower Brier; remaining ties prefer simpler models.",
+  "sensitivity": {
+    "age_3m_vs_18m_reversed": false,
+    "male_only_reversed": false,
+    "official_auc": 0.9791666666666666,
+    "technical_auc": 0.5833333333333333
+  },
+  "status": "internally_supported"
+}

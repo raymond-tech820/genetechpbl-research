@@ -1,0 +1,6 @@
+{
+  "best_validation_loss": 0.3856499947256438,
+  "decision_threshold": 0.5,
+  "epochs": 36,
+  "temperature": 1.3791884411937791
+}

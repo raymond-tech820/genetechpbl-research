@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Animal condition output contract",
+  "type": "object",
+  "required": ["dataset_id", "dataset_scope", "analysis_id", "animal_id", "age_group", "condition", "module_id", "module_version", "score_name", "score_value", "evidence_level"],
+  "properties": {"dataset_id": {"type": "string"}, "dataset_scope": {"type": "string"}, "analysis_id": {"type": "string"}, "animal_id": {"type": "string"}, "age_group": {"type": ["string", "null"]}, "condition": {"type": ["string", "null"]}, "treatment": {"type": ["string", "null"]}, "paired_group_id": {"type": ["string", "null"]}, "module_id": {"type": "string"}, "module_version": {"type": "string"}, "native_scoring_path": {"type": "string"}, "score_name": {"type": "string"}, "score_value": {"type": ["number", "null"]}, "score_direction": {"type": ["string", "null"]}, "aggregation_rule": {"type": ["string", "null"]}, "n_cells": {"type": ["integer", "null"]}, "gene_coverage": {"type": ["number", "string", "null"]}, "threshold_version": {"type": ["string", "null"]}, "pairing_status": {"type": ["string", "null"]}, "evidence_level": {"type": "string"}, "qc_status": {"type": ["string", "null"]}, "source_file": {"type": "string"}},
+  "additionalProperties": true
+}

@@ -1,0 +1,24 @@
+{
+  "fold_gene_overlap": {
+    "0": 0.947265625,
+    "1": 0.943603515625,
+    "2": 0.9453125,
+    "3": 0.9443359375,
+    "4": 0.942138671875
+  },
+  "identity": {
+    "expected_terms": [
+      "msc",
+      "mesenchymal"
+    ],
+    "identity_columns": [],
+    "observed_identity_values": {},
+    "status": "source_file_declared"
+  },
+  "minimum_gene_overlap": 0.942138671875,
+  "reference_dataset_id": "limb_facs",
+  "reference_expression_spearman": 0.5201782746495205,
+  "reference_expression_status": "positive",
+  "sampled_external_cells": 4096,
+  "shared_reference_genes": 4280
+}
