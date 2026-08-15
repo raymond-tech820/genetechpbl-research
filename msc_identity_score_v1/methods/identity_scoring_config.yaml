@@ -1,0 +1,42 @@
+package_name: Identity_Score_v1
+package_version: 1.0.0
+frozen_date: 2026-08-06
+species: Mus musculus
+dataset_id: GSE176206_msc_sokm
+cell_population: muscle-derived MSC
+module: msc_identity_core
+input:
+  matrix: layers/counts
+  gene_symbols: var/gene_name
+  expected_scale: raw_nonnegative_counts
+normalization:
+  method: total_count_then_log1p
+  target_sum: 10000
+gene_set:
+  included_genes: 11
+  positive_genes: 11
+  negative_genes: 0
+  minimum_coverage: 0.70
+primary_scoring:
+  method: expression_matched_background_corrected_module_mean
+  control_sets: 100
+  expression_bins: 24
+  seed: 20260729
+  background_reference: known_animal_control_cells
+  background_reference_cells: 3694
+sensitivity_scoring:
+  method: within_cell_expression_rank
+aggregation:
+  pathway: score_cells_then_aggregate
+  biological_unit_fields:
+    - age_group
+    - exact_treatment_arm
+    - animal_label
+  primary_summary: median
+  supporting_summaries:
+    - mean
+    - p95
+  cross_arm_pairing_status: unpaired
+unknown_animals:
+  include_in_cell_output: true
+  include_in_donor_inference: false

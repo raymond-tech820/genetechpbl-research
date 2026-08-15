@@ -1,0 +1,44 @@
+{
+  "contract_name": "Identity Score v1 output contract",
+  "contract_version": "1.0.0",
+  "measurement_layer": "cell",
+  "inference_layer": "animal nested within age and exact treatment arm",
+  "native_scoring_pathway": "raw counts -> normalize to 10000 -> log1p -> score each cell -> aggregate within biological unit",
+  "primary_cell_field": "msc_identity_core_primary",
+  "sensitivity_cell_field": "msc_identity_core_rank",
+  "primary_donor_field": "identity_primary_median",
+  "sensitivity_donor_field": "identity_rank_median",
+  "join_key": "biological_unit_id",
+  "biological_unit_id_format": "GSE176206_MSC|{age_group}|{exact_treatment_arm}|animal_{animal_label}",
+  "pairing": {
+    "status": "unpaired_across_treatment_arms",
+    "reason": "numeric animal labels are reused and nested within age and exact treatment arm"
+  },
+  "unknown_animals": {
+    "cell_level_scoring": "allowed",
+    "donor_level_inference": "not_allowed",
+    "required_label": "descriptive_only"
+  },
+  "required_donor_output_fields": [
+    "biological_unit_id",
+    "dataset_id",
+    "age_group",
+    "exact_treatment_arm",
+    "analysis_role",
+    "animal_label",
+    "n_cells",
+    "identity_primary_median",
+    "identity_rank_median",
+    "identity_gene_coverage",
+    "qc_status"
+  ],
+  "interpretation": {
+    "higher": "stronger expression of the frozen MSC identity program relative to matched background",
+    "not_claimed": [
+      "clinical safety",
+      "causal rejuvenation",
+      "MSC functional potency",
+      "mathematical equivalence with Youth or Risk"
+    ]
+  }
+}
