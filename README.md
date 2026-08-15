@@ -12,6 +12,7 @@ This repository temporarily contains MSC Youth Score model deliverables and mode
 | [`facs_msc_youth_score_v2`](./facs_msc_youth_score_v2/)                               | Zihan Zhou  | Deprecated FACS v2 model, retained for provenance only.                                                                                                                                                                                                                     |
 | [`facs_msc_youth_score_v2_1`](./facs_msc_youth_score_v2_1/)                           | Zihan Zhou  | Superseded FACS model and historical diaphragm-excluded baseline. Retained for provenance and reproducibility of the v1.1-v2.1 comparison; use `facs_msc_youth_score_v3_1` for the current Zihan model.                                                                     |
 | [`facs_msc_youth_score_v3_1`](./facs_msc_youth_score_v3_1/)                           | Zihan Zhou  | Current frozen FACS model package. M1 is the primary deployable reference; post-ablation M4 is retained as a high-stringency sensitivity comparator. Includes training, formal 999-permutation, GSE176206 biological-application, and TMS Droplet transportability reports. |
+| [`msc_identity_score_v1`](./msc_identity_score_v1/)                                   | Kaile Zhu   | Frozen knowledge-driven mouse MSC Identity Score v1 used for the 2026-08-06 GSE176206 handoff. Provides deterministic cell-level scoring, animal-within-exact-arm aggregation, QC, reference results, and reproducibility tests.                                                |
 | [`geneformer_perturbation`](./geneformer_perturbation/)                               | Jia Qi Choy | Zero-shot Geneformer in-silico perturbation arm. Diagnoses that the Old-to-Young embedding axis is confounded with sequencing depth and not interpretable on this cohort; see folder for full methods log.                                                                  |
 | [cross_module_contract_v1](./cross_module_contract_v1/)                           | Bowen Liu   | Cross-module reproducibility and compatibility layer. Defines native scoring paths, donor/animal inference units, model and dataset provenance, interface compatibility, interpretation boundaries, future multi-dataset intake, and standardized animal-condition outputs. |
 
@@ -49,6 +50,34 @@ The audit checks registry references, source provenance, CSV parsing, JSON schem
 ```text
 cross_module_contract_v1/reports/contract_audit.md
 ```
+
+## MSC Identity Score
+
+The frozen Identity module is available in:
+
+```text
+msc_identity_score_v1/
+```
+
+Identity Score v1 is a knowledge-driven expression-module score rather than a
+trained classifier. It measures how strongly a cell expresses the frozen mouse
+MSC identity program relative to expression-matched background genes. It is a
+contextual companion to the Youth Score and must not be interpreted as a
+clinical safety, potency, tumour-risk, or causal rejuvenation score.
+
+The scorer operates on non-negative raw counts, applies library-size
+normalization and `log1p`, and calculates a deterministic matched-background
+score for each cell. Formal GSE176206 integration uses the median score within:
+
+```text
+age_group x exact_treatment_arm x animal_label
+```
+
+Animal labels are nested within age and exact treatment arm. Reused labels
+across treatment arms are not global subject identifiers, so cross-arm
+comparisons are unpaired. See the package README, frozen methods, statistical
+unit notice, reference results, and tests for the complete scoring contract.
+
 ## Current Model Status
 
 Zihan Zhou's current frozen model is:

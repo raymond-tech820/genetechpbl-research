@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "genetech-identity-score"
+version = "1.0.0"
+description = "Frozen MSC Identity Score v1 scorer and GSE176206 animal-level aggregation"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "h5py>=3.10,<4",
+  "numpy>=1.26,<3",
+  "pandas>=2.0,<3",
+  "pyarrow>=14,<24",
+  "scipy>=1.11,<2",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<9"]
+
+[project.scripts]
+identity-score-v1 = "identity_score_v1.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+identity_score_v1 = ["resources/*.csv"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

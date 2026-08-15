@@ -1,0 +1,39 @@
+project_root = ".."
+
+[package]
+dataset_id = "GSE176206_msc_sokm"
+species = "Mus musculus"
+cell_population = "muscle-derived MSC"
+unit_prefix = "GSE176206_MSC"
+
+[input]
+h5ad = "data/GSE176206_msc_sokm.h5ad"
+counts_layer = "counts"
+gene_name_column = "gene_name"
+
+[metadata]
+age_column = "age"
+treatment_column = "treatment"
+animal_column = "animal"
+state_column = "state"
+sample_column = "sample"
+batch_column = "batch"
+young_labels = ["young"]
+aged_labels = ["old", "aged"]
+sokm_labels = ["Tg+/Dox+"]
+control_labels = ["Tg+/Dox-", "Tg-/Dox+", "NegCtrl"]
+
+[scoring]
+target_sum = 10000
+minimum_gene_coverage = 0.70
+n_control_sets = 100
+control_bins = 24
+seed = 20260729
+chunk_size = 1024
+
+[output]
+directory = "outputs/gse176206_msc"
+
+[validation]
+expected_cells = 20661
+expected_biological_units = 18

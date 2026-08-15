@@ -1,0 +1,13 @@
+gene_symbol,module,direction,source_type,source_id,source_version,source_url,rationale,included,exclusion_reason
+Cd34,msc_identity_core,1,primary_literature,PMCID_PMC9891453,Matthews_2023,https://pmc.ncbi.nlm.nih.gov/articles/PMC9891453/,Cd34 marks an MSC-like fibroblast population in the mouse mesenchymal taxonomy.,True,
+Cd44,msc_identity_core,1,primary_literature,PMCID_PMC9891453,Matthews_2023,https://pmc.ncbi.nlm.nih.gov/articles/PMC9891453/,Cd44 is reported as a mouse MSC-associated stromal marker.,True,
+Cxcl12,msc_identity_core,1,primary_literature,PMCID_PMC3600148,Greenbaum_2013,https://pmc.ncbi.nlm.nih.gov/articles/PMC3600148/,CXCL12 is expressed by prospectively characterized mouse mesenchymal progenitors.,True,
+Eng,msc_identity_core,1,primary_literature,PMCID_PMC8844986,Zhong_2022,https://pmc.ncbi.nlm.nih.gov/articles/PMC8844986/,Endoglin is observed in mouse bone-marrow stromal populations but has tissue-dependent expression.,True,
+Itgav,msc_identity_core,1,primary_literature,PMCID_PMC9891453,Matthews_2023,https://pmc.ncbi.nlm.nih.gov/articles/PMC9891453/,CD51 is used with Sca-1 to enrich mouse mesenchymal progenitors.,True,
+Lepr,msc_identity_core,1,primary_literature,PMCID_PMC8844986,Zhong_2022,https://pmc.ncbi.nlm.nih.gov/articles/PMC8844986/,Lepr labels an adult mouse skeletal stromal stem and progenitor compartment.,True,
+Ly6a,msc_identity_core,1,primary_literature,PMID_19995920,Morikawa_2009,https://pubmed.ncbi.nlm.nih.gov/19995920/,Sca-1 is part of the prospectively validated murine mesenchymal progenitor phenotype.,True,
+Nt5e,msc_identity_core,1,primary_literature,PMCID_PMC9891453,Matthews_2023,https://pmc.ncbi.nlm.nih.gov/articles/PMC9891453/,Nt5e is reported in a defined mouse mesenchymal progenitor compartment.,True,
+Pdgfra,msc_identity_core,1,primary_literature,PMID_19995920,Morikawa_2009,https://pubmed.ncbi.nlm.nih.gov/19995920/,PDGFRalpha is part of the prospectively validated murine mesenchymal progenitor phenotype.,True,
+Prrx1,msc_identity_core,1,primary_literature,PMCID_PMC3600148,Greenbaum_2013,https://pmc.ncbi.nlm.nih.gov/articles/PMC3600148/,Prrx1 lineage tracing identifies a mouse mesenchymal progenitor compartment.,True,
+Thy1,msc_identity_core,1,primary_literature,PMCID_PMC9891453,Matthews_2023,https://pmc.ncbi.nlm.nih.gov/articles/PMC9891453/,Thy1 is reported as a mouse MSC-associated stromal marker.,True,
+Vcam1,msc_identity_core,1,reviewed_marker,MSC_surface_marker_review,reviewed_2026_07,https://pmc.ncbi.nlm.nih.gov/articles/PMC6120267/,VCAM1 is a commonly reported MSC surface marker but lacks sufficiently tissue-matched mouse support for this v1 core.,False,Insufficient mouse limb-MSC specificity for the frozen v1 core
