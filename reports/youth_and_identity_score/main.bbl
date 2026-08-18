@@ -1,0 +1,64 @@
+\begin{thebibliography}{7}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{Tabula Muris Consortium}(2020)]{tabulamuris2020}
+{Tabula Muris Consortium}.
+\newblock A single-cell transcriptomic atlas characterizes ageing tissues in
+  the mouse.
+\newblock \emph{Nature}, 583\penalty0 (7817):\penalty0 590--595, 2020.
+\newblock \doi{10.1038/s41586-020-2496-1}.
+
+\bibitem[Roux et~al.(2022)Roux, Zhang, Paw, et~al.]{roux2022}
+Antoine~E. Roux, Chunlian Zhang, Jonathan Paw, et~al.
+\newblock Diverse partial reprogramming strategies restore youthful gene
+  expression and transiently suppress cell identity.
+\newblock \emph{Cell Systems}, 13\penalty0 (7):\penalty0 574--587.e11, 2022.
+\newblock \doi{10.1016/j.cels.2022.05.002}.
+
+\bibitem[{NCBI Gene Expression Omnibus}(2022)]{geo176206}
+{NCBI Gene Expression Omnibus}.
+\newblock {GSE176206}: Partial reprogramming restores youthful gene expression
+  through transient suppression of cell identity.
+\newblock \url{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE176206},
+  2022.
+\newblock Accessed 2026-08-15.
+
+\bibitem[Pisterzi et~al.(2023)Pisterzi, Chen, van Dijk, Wevers, Bindels, and
+  Raaijmakers]{pisterzi2023}
+Paola Pisterzi, Lanpeng Chen, Claire van Dijk, Michiel J.~W. Wevers, Eric J.~M.
+  Bindels, and Marc H. G.~P. Raaijmakers.
+\newblock Resource: A cellular developmental taxonomy of the bone marrow
+  mesenchymal stem cell population in mice.
+\newblock \emph{HemaSphere}, 7\penalty0 (2):\penalty0 e823, 2023.
+\newblock \doi{10.1097/HS9.0000000000000823}.
+
+\bibitem[Greenbaum et~al.(2013)Greenbaum, Hsu, Day, Schuettpelz, Christopher,
+  Borgerding, Nagasawa, and Link]{greenbaum2013}
+Adam Greenbaum, Yen-Michael~S. Hsu, Ryan~B. Day, Laura~G. Schuettpelz,
+  Matthew~J. Christopher, Joshua~N. Borgerding, Takashi Nagasawa, and Daniel~C.
+  Link.
+\newblock {CXCL12} in early mesenchymal progenitors is required for
+  haematopoietic stem-cell maintenance.
+\newblock \emph{Nature}, 495\penalty0 (7440):\penalty0 227--230, 2013.
+\newblock \doi{10.1038/nature11926}.
+
+\bibitem[Mo et~al.(2022)Mo, Guo, Qin, et~al.]{mo2022}
+Chunyang Mo, Jingxin Guo, Jiachen Qin, et~al.
+\newblock Single-cell transcriptomics of {LepR}-positive skeletal cells reveals
+  heterogeneous stress-dependent stem and progenitor pools.
+\newblock \emph{The EMBO Journal}, 41\penalty0 (4):\penalty0 e108415, 2022.
+\newblock \doi{10.15252/embj.2021108415}.
+
+\bibitem[Morikawa et~al.(2009)Morikawa, Mabuchi, Kubota, et~al.]{morikawa2009}
+Satoru Morikawa, Yo~Mabuchi, Yoshiaki Kubota, et~al.
+\newblock Prospective identification, isolation, and systemic transplantation
+  of multipotent mesenchymal stem cells in murine bone marrow.
+\newblock \emph{Journal of Experimental Medicine}, 206\penalty0 (11):\penalty0
+  2483--2496, 2009.
+\newblock \doi{10.1084/jem.20091046}.
+
+\end{thebibliography}

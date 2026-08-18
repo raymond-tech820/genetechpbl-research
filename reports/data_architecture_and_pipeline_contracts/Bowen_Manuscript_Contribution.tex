@@ -1,0 +1,108 @@
+\documentclass[10pt,twocolumn]{article}
+
+\usepackage[a4paper,top=17mm,bottom=19mm,left=16mm,right=16mm,columnsep=7mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\hypersetup{colorlinks=true,allcolors=blue!55!black}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0pt}
+
+\title{Cross-Module Integration and Pipeline Contracts}
+\author{Liu Bowen}
+\date{}
+
+\begin{document}
+\maketitle
+
+% The final paper has one shared abstract, prepared by the team. This personal
+% contribution therefore does not include a separate abstract.
+
+\setcounter{section}{2}
+\section{Discussion}
+
+\subsection{Cross-module limitations}
+\label{sec:cross-module-limitations}
+
+The integration contract improves provenance but does not remove biological or
+technical limitations. The module scores have different estimands and native
+scales, so their co-location in one table is not numerical harmonization. The
+number of independent GSE176206 animals is small, cell counts are unequal, and
+unknown-animal observations are descriptive sensitivity data. Risk interpretation
+also depends on the released gene lists, coverage rules, reference thresholds,
+aggregation policy, and model version. Finally, Geneformer embedding shifts
+cannot yet be used as direct inputs to the expression-based scorers.
+
+\subsection{Future work: a multi-dataset integration framework}
+\label{sec:future-multidataset-integration}
+
+Future work should extend the contract to additional datasets and animal-condition
+structures through versioned intake schemas, explicit biological-unit keys, and
+machine-checkable provenance and quality-control fields. Cross-assay
+transportability should remain distinct from independent external validation.
+For the prediction arm, a Geneformer-derived state should be connected to the
+scoring axes only after a validated predicted-expression interface is available.
+This would permit in-silico screening of perturbation conditions followed by
+multi-axis state evaluation, while longitudinal functional and safety endpoints
+would still be required before a universal safe region could be claimed.
+
+\setcounter{section}{3}
+\section{Methods}
+
+\subsection{Data architecture and pipeline contracts}
+\label{sec:data-architecture-contracts}
+
+The integration layer was designed to preserve the native analysis contract of
+each module. Cells were treated as measurement units, whereas donors or animals
+were treated as the biological inference units. This distinction was required
+because arithmetic aggregation of cell-level scores and scoring of aggregated
+expression profiles are different estimands. Accordingly, the integration layer
+did not refit any Youth, Identity, or Risk model and did not transform their raw
+score scales.
+
+For each module, the contract recorded the input representation, preprocessing
+steps, scoring unit, aggregation rule, model version, quality-control fields, and
+source artifact. The cell-level Youth model retained its native scoring and donor
+summary. The v3.1 donor-pseudobulk Youth framework retained M1 as the primary
+operational model and M4 as a separate high-stringency sensitivity model. The two
+operating points were never averaged or ensembled. The Identity and Risk modules
+were likewise retained as separate named outputs.
+
+The canonical biological-unit identifier comprised four fields:
+\begin{center}
+\small\ttfamily
+dataset\_id \textbar{} age\_group \textbar{}\\
+exact\_treatment\_arm \textbar{} animal\_label
+\end{center}
+\noindent Exact treatment-arm labels were retained throughout the pipeline.
+Repeated numeric animal labels were not interpreted as evidence of pairing,
+because animal labels were nested within treatment arms in the GSE176206
+application. A pairing status was recorded only when supported by an explicit
+sample map; otherwise the comparison was labelled unpaired or unknown.
+
+The canonical output schema required the biological-unit identifier, dataset and
+condition fields, module name and version, native score name, aggregation rule,
+coverage and quality-control fields, evidence level, and source file. Missing
+module outputs were left missing and were not imputed. Unknown-animal rows were
+retained only as descriptive sensitivity observations and were excluded from the
+primary known-animal inference layer.
+
+The Risk definition was represented by two independent axes, namely
+\textit{Pluripotency Risk} and \textit{Genomic Stress Risk}. Inflammation was not
+included in the formal final output. The versioned gene list, scoring scripts,
+and donor-summary table were registered as source artifacts; inclusion of Risk
+values in the primary integrated table additionally required the input-data
+reference, software environment, coverage and threshold rules, unknown-animal
+policy, and clean-checkout reproducibility record.
+
+Geneformer was represented as a separate perturbation/state-transition prediction
+arm. Its embedding shift is not a predicted expression matrix and therefore
+cannot be passed directly to an expression-based Youth, Identity, or Risk
+scorer. Any future connection would require an independently validated
+predicted-expression adapter.
+
+\end{document}
